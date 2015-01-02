@@ -1,0 +1,877 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-attachment:fixed;
+    font-family:Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    position: relative;
+    width:100%;
+    background:url(../img/background.jpg) no-repeat;
+    background-size: cover;
+}
+
+/* Portrait layout (default) */
+.app {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+#content{
+    position: absolute;
+    top: 90px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+/******************************* HOME **************************/
+#infoCircle{
+    background:url(../img/circle.png) no-repeat center top;
+    width:495px;
+    height:495px;
+    }
+    #tab{
+        background-image: url(../img/tab.png) no-repeat center;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height:292px;
+    }
+    #opts{
+        width: 100%;
+        height: 115px;
+        background-color: #141D20;
+        position: absolute;
+        bottom: 0;
+    }
+    #receberBtn{
+        background:url(../img/receber_btn.png) no-repeat;
+        width: 311px;
+        height: 113px;
+        float: left;
+    }
+/******************************* @HOME **************************/
+
+/******************************* RECEBER **************************/
+
+#receberDiv{
+    width: 100%;
+    float: left;
+    
+}
+.listagem{
+    width: 100%;
+    float: left;
+}
+.listagem li{
+    width: 100%;
+    height: 50px;
+    float: left;
+    background-color: #ffffff;
+    border: #bbb thin solid;
+    list-style-type: none;
+}
+
+/******************************* HEADER **************************/
+
+#header{
+    position: fixed;
+    top: 40px;
+    left: 0;
+    right: 0;
+    height: 90px;
+    z-index: 9999;
+}
+
+#headerUp{
+    float: left;
+    width: 100%;    
+}
+
+#headerUpLeft{
+    width: 16%;
+    float: left;
+}
+
+#headerUpMiddle{    
+    width: 100%;
+    float: left;
+    text-align: center;
+    z-index: -9999;
+    position: fixed;
+}
+
+#headerUpRight{
+    width: 16%;
+    float: right;
+}
+
+.logoTop{
+    margin-top: 30px;
+}
+
+.aBack{
+    background: url("../img/top.png") no-repeat center;
+    width: 78px;
+    height: 78px;
+    float: right;
+    margin-top: 10px;
+}
+.aBack:active {
+  -webkit-transform: scale3d(0.9, 0.9, 1);
+}
+.aSearch{
+    background: url("../img/search.png") no-repeat center;
+    width: 78px;
+    height: 78px;
+    float: left;
+    margin-top: 10px;
+}
+
+.tapped {
+ /* -webkit-transform: scale3d(0.9, 0.9, 1);  */
+}
+#headerDown{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 158px;
+    height: 55px;
+}
+
+.headerReceber{
+    float: left;
+    margin-left: 9%;
+}
+
+.span30Black{
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 30px;
+        color: black;
+        float: left;
+        padding-left: 8px;
+        width: 100%;
+}
+.span30Black2{
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 30px;
+        color: black;
+        float: left;
+}
+.span26White{
+    font-family:Helvetica, Arial, sans-serif;
+    font-size: 26px;      
+    color: white;
+}
+
+.marginTop24{
+    margin-top: 24px;
+}
+
+.marginTop30{
+    margin-top: 30px;
+}
+.floatLeft{
+    float: left;  
+}
+
+.floatRight{
+    float: right;
+}
+
+.margRight5{
+    margin-right: 5px;
+}
+
+.margRight40{
+    margin-right: 40px;
+}
+
+
+.margLeft20{
+    margin-left: 20px;
+}
+
+/******************************* Listagem UL-LI **************************/
+
+#listUl{
+    background: none repeat scroll 0 0 #FFFFFF;
+    float: left;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+#listagem{
+    height: 1000px;
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+    position: absolute;
+    top: 312px;
+    width: 100%; 
+}
+
+.listLi{
+    list-style: none;
+     -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+}
+.listLi.tapped {
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.1) 50%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.1) 50%);
+}
+#pesquisa
+{
+    width: 100%;
+    position: fixed;
+    top: 252px;
+    text-align: center;
+    display: none;
+}
+#pesquisaInput
+{
+    padding: 15px;
+    font-family:Helvetica, Arial, sans-serif;
+    font-size: 26px;      
+    color: #027495;
+    font-weight: 100;
+    border:solid 1px #8495B1;
+    border-radius: 29px;
+    width: 80%;
+    height: 26px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+#lupa
+{
+    background: url(../img/lupa.png) no-repeat center;
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    left: 1%;
+    top: -10px;
+}
+#closePesquisa
+{
+    background: url(../img/closePesquisa.png) no-repeat center;
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    text-decoration: none;
+    border: none;
+    right: 1%;
+    top: -12px;
+}
+#listArrow
+{
+    background: url(../img/listBarArrow.png) no-repeat;
+    width: 108px;
+    height: 49px;
+    position: fixed;
+    left: 6%;
+    top: -24px;
+}
+.liFst{
+    background: url(../img/listBar.png) repeat-x;
+    height: 47px;
+    padding-top: 35px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 230px;
+}
+
+.liFst div{
+    color: white;
+    font-size: 26px;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+}
+
+.divHead1{
+    float: left;
+    width: 18%;
+    text-align: center;
+}
+
+.divHead2{
+    float: left;
+    width: 42%;
+    text-align: left;
+}
+
+.divHead3{
+    float: left;
+    width: 20%;
+    text-align: left;
+}
+
+.divHead4{
+    float: left;
+    width: 20%;
+    text-align: left;
+}
+
+.headThImg{
+    
+}
+
+.liNext{
+    border-bottom: 1px solid #CCCCCC;
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    padding-left: 0;
+    padding-right: 0;
+    float: left;
+    width: 96%;
+    background: #fff;
+    margin-left: 2%;
+}
+
+.divBody1{
+    float: left;
+    width: 18%;
+    text-align: center;
+}
+.divBody1List{
+    float: left;
+    width: 12%;
+    padding-top: 20px;
+    background-color: #00D800;
+}
+.divBody2{
+    float: left;
+    padding-top: 20px;
+    width: 42%;
+}
+.divBody2List{
+    float: left;
+    padding-top: 20px;
+    width: 36%;
+    background-color: #0DB9E5;
+}
+
+.divBody3{
+    float: left;
+    padding-top: 20px;
+    width: 20%;
+}
+.divBody3List{
+    float: left;
+    padding-top: 20px;
+    width: 18%;
+    background-color: #535362;
+}
+.divBody4{
+    float: left;
+    padding-top: 20px;
+    width: 20%;
+}
+
+.span26Blue{
+    font-family:Helvetica, Arial, sans-serif;
+    font-size: 26px;      
+    color: #027495;
+    font-weight: 100;
+    float: left;
+}
+.span26BlueRight{
+    font-family:Helvetica, Arial, sans-serif;
+    font-size: 26px;      
+    color: #027495;
+    font-weight: 100;
+    float: right;
+}
+#footer{
+    background: black;
+    position: fixed;
+    width: 98.2%;
+    height: 106px;
+    padding: 1%;
+    bottom: 0;
+    left: 0;
+}
+#footer2{
+    background: black;
+    position: fixed;
+    width: 98.2%;
+    height: 106px;
+    padding: 1%;
+    bottom: 0;
+    left: 0;
+}
+
+#container{
+   float: left;
+width: 100%;
+height: 100%;
+top: 0px;
+position: fixed;
+}
+
+.aFiltrarListagem{
+    background: url("../img/filtrar1.png") no-repeat 5%;
+    width: 49.5%;
+    height: 100%;
+    float: left;
+    font-family:Helvetica, Arial, sans-serif;
+    color: #fff;
+    font-size: 30px;
+    font-weight: normal;
+    text-decoration: none; 
+    border: 1px #535362 solid;
+    border-radius: 10px;
+}
+
+.aAdicionarListagem{
+    background: url("../img/adicionar1.png") no-repeat 5%;
+    width: 49.5%;
+    height: 100%;
+    float: right;    
+    font-family:Helvetica, Arial, sans-serif;
+    color: #fff;
+    font-size: 30px;
+    font-weight: normal;
+    text-decoration: none;
+    border: 1px #535362 solid;
+    border-radius: 10px;
+}
+#options{
+        background: #000000;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        height: 100px;
+        padding-left: 15px;
+        padding-right: 15px;
+        left: -2%;
+}   
+.noLiquidada{
+    background: url("../img/noLiquidada.png") no-repeat 5%;
+    width: 36%;
+    height: 100%;
+    float: left;    
+    font-family:Helvetica, Arial, sans-serif;
+    color: #fff;
+    font-size: 25px;
+    font-weight: normal;
+    text-decoration: none;
+    border: none;
+    text-align: left;
+    padding-left: 74px;
+}
+.liquidada{
+    background: url("../img/liquidada.png") no-repeat 5%;
+    width: 36%;
+    height: 100%;
+    float: left;    
+    font-family:Helvetica, Arial, sans-serif;
+    color: #fff;
+    font-size: 25px;
+    font-weight: normal;
+    text-decoration: none;
+    border: none;
+    text-align: left;
+padding-left: 74px;
+}
+.all{
+    background: url("../img/all.png") no-repeat 5%;
+    width: 28%;
+    height: 100%;
+    float: left;    
+    font-family:Helvetica, Arial, sans-serif;
+    color: #fff;
+    font-size: 25px;
+    font-weight: normal;
+    text-decoration: none;
+    border: none;
+    text-align: left;
+padding-left: 74px;
+}
+/******************************* DIVIDA **************************/
+
+.aTrash{
+    background: url("../img/trash.png") no-repeat center;
+    width: 78px;
+    height: 78px;
+    float: left;
+    margin-top:10px;
+}
+
+.aEditar{
+    background: url("../img/editar1.png") no-repeat 5%;
+    width: 49.5%;
+    height: 100%;
+    float: left;    
+    font-family:Helvetica, Arial, sans-serif;
+    color: #fff;
+    font-size: 30px;
+    font-weight: normal;
+    text-decoration: none;
+    border: 1px #535362 solid;
+    border-radius: 10px;
+}
+
+.aLiquidar{
+    border: none;
+    background: url("../img/liquidar1.png") no-repeat 5%;    
+    width: 49.5%;
+    height: 100%;
+    float: right;    
+    font-family:Helvetica, Arial, sans-serif;
+    color: #fff;
+    font-size: 30px;
+    font-weight: normal;
+    border: 1px #535362 solid;
+    border-radius: 10px;
+}
+.aAdicionar{
+    border: none;
+    background: url("../img/liquidar1.png") no-repeat 5%;    
+    width: 100%;
+    height: 100%;
+    float: right;    
+    font-family:Helvetica, Arial, sans-serif;
+    color: #fff;
+    font-size: 30px;
+    font-weight: normal;
+    border: 1px #535362 solid;
+    border-radius: 10px;
+}
+.headerLiquidar{
+    float: left;
+    margin-left: 4%;
+}
+
+.span26White{
+    font-family:Helvetica, Arial, sans-serif;
+    font-size: 26px;      
+    color: #fff;
+    font-weight: 100;
+}
+
+.span26Black{
+    font-family:Helvetica, Arial, sans-serif;
+    font-size: 26px;      
+    color: #000;
+    font-weight: 100;
+}
+
+.divHeadDebt1{
+    margin-left: 6% !important;
+    width: 50%;
+    float: left;
+}
+
+.divHeadDebt2{
+    
+}
+
+#dividaUl{
+    padding: 0;
+    background: #fff;
+    list-style: none;
+    width: 100%;
+    margin: 0;
+}
+
+.dividaLi{
+    list-style: none;
+    width: 92%;
+    margin-left: 2%;
+    border-bottom: 1px solid #CCCCCC;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 4%;
+    
+}
+
+.dividaLabel{
+    float: left;
+    margin-bottom: 15px;
+}
+
+.dividaInput{
+    padding-top: 20px;
+    width: 90%;
+}
+
+.nameInput{
+    padding: 15px;
+    font-family:Helvetica, Arial, sans-serif;
+    font-size: 26px;      
+    color: #027495;
+    font-weight: 100;
+    border:solid 1px #0DB9E5;
+    border-radius: 10px;
+    width: 100%;
+}
+
+/******************************* INDEX **************************/
+
+.headerIndex{
+    text-align: center;
+}
+
+.aReceberIndex{
+    background: url("../img/receber1.png") no-repeat 5%;
+    width: 49.5%;
+    height: 100%;
+    float: left;    
+    font-family:Helvetica, Arial, sans-serif;
+    color: #fff;
+    font-size: 30px;
+    font-weight: normal;
+    text-decoration: none;
+    padding-left: 100px;    
+    border: 1px #535362 solid;
+    border-radius: 10px;    
+}
+
+.aPagarIndex{
+    background: url("../img/pagar1.png") no-repeat 5%;
+    width: 49.5%;
+    height: 100%;
+    float: right;    
+    font-family:Helvetica, Arial, sans-serif;
+    color: #fff;
+    font-size: 30px;
+    font-weight: normal;
+    text-decoration: none;
+    padding-left: 100px;    
+    border: 1px #535362 solid;
+    border-radius: 10px;
+}
+
+#infoDiv{
+    height: 90%;
+    background: #046177;
+    padding-top: 40px;
+    width: 102%;
+    left: -2%;
+    top: -123%;
+    position: fixed;
+}
+#setaHome{
+background: url("../img/indexPointerBack.png") no-repeat center;
+margin: 0 auto;
+width: 100%;
+height: 41px;
+float: left;
+text-align: center;
+margin-top: -73px;
+     
+}
+
+.pointIndexImg{
+    margin: 0 auto;
+    margin-top: -190px;
+}
+
+.span30BlackSpace{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    color: black;
+    letter-spacing: 5px;
+    height: 35px;
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.span100White{
+    font-family:Helvetica, Arial, sans-serif;
+    font-size: 80px;  
+    color: white;
+    
+}
+
+.span30White{
+    font-family:Helvetica, Arial, sans-serif;
+    font-size: 40px;  
+    color: white;
+    float: left;
+    padding-left: 8px;
+    width: 100%;
+}
+.span30White2{
+    font-family:Helvetica, Arial, sans-serif;
+    font-size: 30px;  
+    color: white;
+    
+}
+.absolute{
+    position: absolute;
+}
+
+.span60Green{
+    font-family:Helvetica, Arial, sans-serif;
+    font-size: 60px;  
+    color: #00D800;
+    
+}
+
+#graph{
+    height: 500px;
+    text-align: center;
+    margin-top: 30%;
+}
+
+#graphInner{
+    width: 400px;
+    margin: 0 auto;
+    height: 150px;
+    margin-top: -310px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.infoDivLeft{
+    width: 50%;
+    float: left;
+}
+
+.infoDivRight{
+    width: 50%;
+    float: left;
+}
+
+.divNrLeft{
+    background: url("../img/lineTopGreen.png") no-repeat top center;
+    padding-top: 10px;
+    float: left;
+    width: 30%;
+    text-align: center;
+    margin-left: 4%;
+}
+
+.divSpanLeft{
+    float: left;
+    width: 200px;
+    text-align: center;
+    
+}
+
+.divSpanRight{
+    float: left;
+    width: 200px;
+    text-align: center;
+}
+
+.divNrRight{
+    background: url("../img/lineTopRed.png") no-repeat top center;
+    padding-top: 10px;
+    float: left;
+    width: 30%;
+    text-align: center;
+    margin-left: 4%;
+}
+
+/**********************GRAFICO****************/
+#contactList
+{
+width: 100px;
+height: 100px;
+background: url("../img/plus_contacts.png") no-repeat center;
+background-color: transparent;
+border: 0px solid;
+position: absolute;
+-webkit-appearance: initial;
+top: 43px;
+right: 31px;
+z-index: 9999;
+font-size: 0;   
+}
+#dividaContainer
+{
+padding: 0; 
+top: 0;
+list-style: none;
+width: 100%;
+height: 734px;
+top:311px;
+position: fixed;    
+}
+input{
+    z-index: 9999;
+}
