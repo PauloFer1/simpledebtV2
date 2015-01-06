@@ -1,0 +1,86 @@
+
+#headerList {
+	height:43px; line-height:43px;
+	background:#6d84a2 url(header-bg.png) 0 0 repeat-x;
+	color:#fff;
+	font-size:20px; font-weight:bold;
+	text-shadow:rgba(0,0,0,0.6) 0 -1px 0;
+	text-align:center;
+	border-bottom:1px solid #2d3642;
+}
+#wrapper {
+	position:relative;	/* needed */
+	z-index:1;			/* needed and important */
+	height:500px;		/* needed */
+	overflow:hidden;	/* suggested */
+        padding-bottom: 0px !important;
+        margin-top: 0px !important;
+}
+
+#scroller {
+	width:100%;
+	padding-bottom:44px;
+        margin-top: 0px !important;
+        padding-top: 0px !important;
+}
+
+dt {
+	width:90%; height:21px; line-height:21px;
+	padding-left:12px;
+	font-size:19px; font-weight:bold;
+	background:#f1f1f1;
+	color:#04657C;
+	border-bottom:1px solid #989ea4;
+}
+
+dt:first-child {
+	border-top:0;
+}
+
+dd {
+	width:90%; height:44px;
+	padding-left:10px;
+	line-height:44px;
+	font-size:20px;
+	border-bottom:1px solid #e0e0e0;
+        background-color: #fff;
+        color:#444;
+        margin-left: 0px !important;
+}
+
+dd.last {
+	border-bottom:1px solid #717d85;
+}
+
+#abc {
+	position:absolute; z-index:1000;
+	top:0px; right:0px;
+	width:9%; height:500px;
+	text-align:center;
+	font-size:11px;
+	color:#6a737d;
+        background-color: #f1f1f1;
+        list-style: none;
+        padding-left: 0px !important;
+        margin-top: 0px !important;
+}
+
+#abc li {
+	padding-top:6px;
+	font-weight:bold;
+        background-color: #f1f1f1;
+        list-style: none;
+        padding-left: 0px !important;
+}
+
+#abc li:first-child {
+	padding-top:20px !important;
+}
+
+#abc.hover {
+	//background:rgba(106,115,125,0.5);
+}
+#contactsContainer{
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+}

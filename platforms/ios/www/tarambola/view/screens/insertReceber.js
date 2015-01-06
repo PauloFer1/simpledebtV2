@@ -22,7 +22,7 @@ var insertReceber = {
                         '<li class="dividaLi">'+
                             '<div class="dividaLabel"><span class="span26Black">'+translate.act_lang.nome+': </span></div>'+
                             '<div class="dividaInput"><input id="receberNomeInput" class="nameInput" type="text" name="name" value=""/></div>'+
-                            '<select id="contactList"></select>'+
+                            '<button type="button" id="contactList" class="contactBtn" title="Contactos">contactos</button>'+
                         '</li>'+
                         '<li class="dividaLi">'+
                             '<div class="dividaLabel"><span class="span26Black">'+translate.act_lang.valor+' '+translate.currency+': </span></div>'+
@@ -46,7 +46,7 @@ var insertReceber = {
          var h =  $(document).height() - ($('.liFst').offset().top + $('.liFst').height()  + $('#footer2').height()) - ($('#footer2').height()*0.01)*2 -47;
          if($('#dividaUl').height()<h)
             $('#dividaUl').height(h);
-         var t = $(document).height() - $('#footer').height() - ($('#footer').height()*0.01)*4 -7;
+         var t = $(document).height() - $('#footer2').height() - ($('#footer2').height()*0.01)*4 -7;
           var styles = {top : t.toString()+"px"};
          $('#footer2').css(styles);
          $('#dividaContainer').height(h);
@@ -68,8 +68,19 @@ var insertReceber = {
          var fields       = ["displayName"];
          navigator.contacts.find(fields, insertReceber.onSuccessContacts, insertReceber.onError, options);
          //**** HANDLERS
+        $('.contactBtn').click(function(){insertReceber.triggerContacts(); return(false);});
         $('.aAdicionar').click(function(){insertReceber.triggerSubmitReceber(); return(false);});
         $('#contactList').change(function(){insertReceber.chooseName(); return(false);});
+    },
+    cleanStorage: function(){
+      window.localStorage.setItem("contact", "");
+      window.localStorage.setItem("value", "");
+      window.localStorage.setItem("description", "");
+    },
+    setStorage: function(){
+        $('#receberNomeInput').val(window.localStorage.getItem("contact"));
+        $('#receberValorInput').val(window.localStorage.getItem("value"));
+        $('#receberDescricaoInput').val(window.localStorage.getItem("description"));
     },
      removeEvents: function(){
         $('.aAdicionar').unbind('click');
@@ -96,6 +107,14 @@ var insertReceber = {
         evt.preventDefault();
         return(false);
     },
+    triggerContacts:function(){
+         window.localStorage.setItem("contact",$('#receberNomeInput').val());
+         window.localStorage.setItem("value", $('#receberValorInput').val());
+         window.localStorage.setItem("description", $('#receberDescricaoInput').val());
+      
+         var event = new Event("receber.contact.list");
+         document.dispatchEvent(event);
+    },
     onSuccessContacts: function(contacts){
         var html='';
        contacts.sort(function(a, b){if(a.displayName < b.displayName) return -1; else return 1;});
@@ -111,5 +130,8 @@ var insertReceber = {
     },
     chooseName: function(){
         $('#receberNomeInput').val($("#contactList option:selected").text());
+    },
+    fillName:function(name){
+        $('#receberNomeInput').val(name);
     }
 };

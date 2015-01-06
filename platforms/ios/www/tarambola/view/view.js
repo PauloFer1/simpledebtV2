@@ -15,6 +15,7 @@ var view = {
     _itemPagar: itemPagar,
     _addReceber: insertReceber,
     _addPagar: insertPagar,
+    _contactList: contactList,
     
     initialize: function(model, controller){
 
@@ -37,6 +38,8 @@ var view = {
         document.addEventListener("model.allitem.ready", view.gotoAllItemReady, false);
         document.addEventListener("receber.add.btn", view.gotoAddReceberReady, false);
         document.addEventListener("pagar.add.btn", view.gotoAddPagarReady, false);
+        document.addEventListener("receber.contact.list", view.gotoContactListReady, false);
+        document.addEventListener("receber.contact.choose", view.gotoBackContact, false);
         //$('.aBack').click(function(){view.goBack();});
         $('.aBack').on('tap', function(){view.goBack();});
         //$('#topBtn').click(function(){view.searchDelete(); return(false);});
@@ -64,7 +67,7 @@ var view = {
        
        if(view._actPage == view._itemReceber || view._actPage == view._itemPagar || view._actPage == view._allItem)
            view.showDelete();
-       else if(view._actPage == view._addPagar || view._actPage == view._addReceber)
+       else if(view._actPage == view._addPagar || view._actPage == view._addReceber || view._actPage == view._contactList)
            view.hideSearch();
        else
            view.showSearch();
@@ -131,6 +134,21 @@ var view = {
         view._actPage = view._addReceber;
         view.changePage(view._addReceber.getHtml(model));
         view._addReceber.setEvents();
+        view._addReceber.cleanStorage();
+    },
+    //******CONTACT LIST *******//
+    gotoContactListReady: function(){
+      view._previousPage = this._actPage;
+      view._actPage = view._contactList;
+      view.changePage(view._contactList.getHtml(model));
+      view._contactList.setEvents();
+    },
+    gotoBackContact: function(){
+      view._previousPage = this._actPage;
+      view._actPage = view._addReceber;
+      view.changePage(view._addReceber.getHtml(model));
+      view._addReceber.setStorage();
+      view._addReceber.setEvents();
     },
     //****************** @RECEBER *******************//
     //****************** PAGAR *******************//
@@ -220,6 +238,14 @@ var view = {
            view._pagar.setEvents();     
            view._actPage = view._pagar;
            view.showSearch();
+        }
+        else if(view._actPage == view._contactList)
+        {
+            view._slider.slidePageFrom($(view._addReceber.getHtml(model)), "left");
+            view._addReceber.setEvents();
+            view._actPage = view._addReceber;
+            view._addReceber.setStorage();
+            view.showSearch();
         }
         return(0);
     },

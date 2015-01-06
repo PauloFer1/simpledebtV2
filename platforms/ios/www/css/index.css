@@ -872,6 +872,16 @@ height: 734px;
 top:311px;
 position: fixed;    
 }
+#contactsContainer
+{
+    padding: 0; 
+    top: 0;
+    list-style: none;
+    width: 100%;
+    height: 734px;
+    top:311px;
+    position: fixed;    
+}
 input{
     z-index: 9999;
 }
