@@ -31,6 +31,12 @@ var contactList={
         return(html);
     },
     setEvents:function(){
+        document.body.scrollTop = 0;
+        
+        var options      = new ContactFindOptions();
+        options.multiple = true;
+        var fields       = ["displayName", "name"];
+        navigator.contacts.find(fields, contactList.onSuccessContacts, contactList.onError, options);
          $('body').css({top: "0px"});
          var h =  $(document).height() - ($('.liFst').offset().top + $('.liFst').height()) -47;
          if($('#wrapper').height()<h)
@@ -122,5 +128,102 @@ var contactList={
         var event = new Event("receber.contact.choose");
         document.dispatchEvent(event);
         contactList.removeEvents();
+    },
+    onError: function(contactError){
+        alert("Erro na Lista de Contactos!");
+    },
+    onSuccessContacts: function(contacts){
+        
+        function getName(c) {
+            var name = c.displayName;
+            if(!name || name === "") {
+                if(c.name.formatted) 
+                    return c.name.formatted;
+                if(c.name.givenName && c.name.familyName) 
+                    return c.name.givenName +" "+c.name.familyName;
+                return "";
+            }
+            return name;
+        }
+
+        var array = new Array();
+       contacts.sort(function(a, b){if(getName(a).toUpperCase() < getName(b).toUpperCase()) return -1; else return 1;});
+        for(var i=0; i<contacts.length; i++)
+        {
+            var name = getName(contacts[i]);
+            if(name!="")
+            {
+                array.push(name);
+            }
+        }
+        
+        var obj = contactList.addAlphabetic(array);
+        var html='<dl id="scroller">';
+        
+        for(var i=0; i<obj.contacts.length; i++)
+        {
+            var contact = obj.contacts[i];
+            html+='<dt id="' + Object.keys(contact)[0] + '">'+ Object.keys(contact)[0] + '</dt>';
+            for(var j = 0; j<contact[Object.keys(contact)[0]].length; j++)
+            {
+                html+='<dd>' + contact[Object.keys(contact)[0]][j].firstName + '</dd>';
+            }
+        }
+        html+='</dl>';
+        $('#wrapper').html(html);
+    },
+    addAlphabetic: function(array){
+        var ex = '{"contacts":[{"A":[{"firstName":"Antonio"}, {"firstName":"Alberto"}], {"B":[{"firstname":"Beatriz"}]} ]}';
+        var obj = '{"contacts":[';
+        var k=0;
+        var j=0;
+        var numbers =', {"#":[';
+        var charS = '';
+        for(var i=0; i<array.length; i++)
+        {
+            if(array[i].charAt(0)>=0 && array[i].charAt(0)<=9)
+            {
+                if(k>0)
+                    numbers+=', ';
+                numbers+='{"firstName":"'+ array[i] +'"}';
+                k++;
+                
+            }
+            else
+            {
+                if(array[i].charAt(0)<="z")
+                {
+                    if(j==0)
+                    {
+                        obj+='{"'+ array[i].charAt(0).toUpperCase() +'":[{"firstName":"'+ array[i] + '"}';
+                    }
+                    else if(j>0 && array[i-1].charAt(0).toUpperCase()!= array[i].charAt(0).toUpperCase())
+                    {
+                        obj+=']},';
+                        obj+='{"'+ array[i].charAt(0).toUpperCase() +'":[{"firstName":"'+ array[i] + '"}';
+                    }
+                    else
+                        obj+=',{"firstName":"'+ array[i] +'"}';
+                    j++;
+                }
+                else
+                {
+                   if(k>0)
+                    numbers+=', ';
+                   numbers+='{"firstName":"'+ array[i] +'"}'; 
+                }
+            }
+            if(i==array.length-1)
+                obj+=']}';
+        }
+        numbers+=']}';
+        alert(numbers);
+        obj+=numbers;
+        obj+=']}';
+        var json = JSON.parse(obj);
+        //alert(Object.keys(json.contacts[0])[0]);
+        //alert(json.contacts[0][Object.keys(json.contacts[0])[0]][0].firstName);
+        
+        return(json);
     }
 };

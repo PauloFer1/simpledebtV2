@@ -27,7 +27,7 @@
 dt {
 	width:90%; height:21px; line-height:21px;
 	padding-left:12px;
-	font-size:19px; font-weight:bold;
+	font-size:22px; font-weight:bold;
 	background:#f1f1f1;
 	color:#04657C;
 	border-bottom:1px solid #989ea4;
@@ -38,14 +38,15 @@ dt:first-child {
 }
 
 dd {
-	width:90%; height:44px;
+	width:90%; height:65px;
 	padding-left:10px;
-	line-height:44px;
-	font-size:20px;
+	line-height:54px;
+	font-size:36px;
 	border-bottom:1px solid #e0e0e0;
         background-color: #fff;
         color:#444;
         margin-left: 0px !important;
+        padding-top: 6px;
 }
 
 dd.last {
@@ -57,7 +58,7 @@ dd.last {
 	top:0px; right:0px;
 	width:9%; height:500px;
 	text-align:center;
-	font-size:11px;
+	font-size:16px;
 	color:#6a737d;
         background-color: #f1f1f1;
         list-style: none;

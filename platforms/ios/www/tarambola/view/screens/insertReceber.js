@@ -116,14 +116,40 @@ var insertReceber = {
          document.dispatchEvent(event);
     },
     onSuccessContacts: function(contacts){
-        var html='';
-       contacts.sort(function(a, b){if(a.displayName < b.displayName) return -1; else return 1;});
+        
+        function getName(c) {
+            var name = c.displayName;
+            if(!name || name === "") {
+                if(c.name.formatted) 
+                    return c.name.formatted;
+                if(c.name.givenName && c.name.familyName) 
+                    return c.name.givenName +" "+c.name.familyName;
+                return "";
+            }
+            return name;
+        }
+        
+       var array = new Array();
+       contacts.sort(function(a, b){if(getName(a) < getName(b)) return -1; else return 1;});
         for(var i=0; i<contacts.length; i++)
         {
-            if(contacts[i].displayName!="")
-                html+='<option value="' + contacts[i].displayName + '">' + contacts[i].displayName + '</option>'
+            var name = getName(contacts[i]);
+            if(name!="")
+            {
+                array.push(name);
+            }
         }
-        $('#contactList').html(html);
+        
+        $('#receberNomeInput').autocomplete({
+            lookup: array,
+            onSelect: function(suggestion){
+                document.body.scrollTop = 0;
+                $('#receberNomeInput').val(suggestion.value);
+                setTimeout(function(){
+                    $('body').css({top: "0px"});
+                }, 500);
+            }
+        });
     },
     onError: function(contactError){
         alert("Erro na Lista de Contactos!");
@@ -133,5 +159,31 @@ var insertReceber = {
     },
     fillName:function(name){
         $('#receberNomeInput').val(name);
+    },
+    addAlphabetic: function(array){
+        var ex = '{"contacts":[{"A":[{"firstName":"Antonio"}, {"firstName":"Alberto"}], {"B":[{"firstname":"Beatriz"}]} ]}';
+        var obj = '{"contacts":[';
+        for(var i=0; i<array.length; i++)
+        {
+            if(i==0)
+            {
+                obj+='{"'+ array[i].charAt(0).toUpperCase() +'":[{"firstName":"'+ array[i] + '"}';
+            }
+            else if(i>0 && array[i-1].charAt(0)!= array[i].charAt(0))
+            {
+                obj+=']},';
+                obj+='{"'+ array[i].charAt(0).toUpperCase() +'":[{"firstName":"'+ array[i] + '"}';
+            }
+            else
+                obj+=',{"firstName":"'+ array[i] +'"}';
+            if(i==array.length-1)
+                obj+=']}';
+        }
+        obj+=']}';
+        var json = JSON.parse(obj);
+        //alert(Object.keys(json.contacts[0])[0]);
+        //alert(json.contacts[0][Object.keys(json.contacts[0])[0]][0].firstName);
+        
+        return(json);
     }
 };

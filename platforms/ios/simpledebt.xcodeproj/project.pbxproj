@@ -191,6 +191,7 @@
 		65B033D51A56AE07006BE5B6 /* receber.js in Resources */ = {isa = PBXBuildFile; fileRef = 65B0333C1A56AE06006BE5B6 /* receber.js */; };
 		65B033D61A56AE07006BE5B6 /* view.js in Resources */ = {isa = PBXBuildFile; fileRef = 65B0333D1A56AE06006BE5B6 /* view.js */; };
 		65B301481A4DEE2200188A4E /* db in Resources */ = {isa = PBXBuildFile; fileRef = 65B301471A4DEE2200188A4E /* db */; };
+		65C4381B1A5D9FBC001E0862 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C4381A1A5D9FBC001E0862 /* Media.xcassets */; };
 		65EF16601A56AFBF00864719 /* SQLitePlugin.js in Resources */ = {isa = PBXBuildFile; fileRef = 65EF165F1A56AFBF00864719 /* SQLitePlugin.js */; };
 		7E7966DE1810823500FA85AD /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D41810823500FA85AD /* icon-40.png */; };
 		7E7966DF1810823500FA85AD /* icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D51810823500FA85AD /* icon-40@2x.png */; };
@@ -416,6 +417,7 @@
 		65B0333C1A56AE06006BE5B6 /* receber.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = receber.js; sourceTree = "<group>"; };
 		65B0333D1A56AE06006BE5B6 /* view.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = view.js; sourceTree = "<group>"; };
 		65B301471A4DEE2200188A4E /* db */ = {isa = PBXFileReference; lastKnownFileType = file; path = db; sourceTree = "<group>"; };
+		65C4381A1A5D9FBC001E0862 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		65EF165F1A56AFBF00864719 /* SQLitePlugin.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SQLitePlugin.js; sourceTree = "<group>"; };
 		78DB42FC0E33492696B70412 /* CDVContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVContact.h; path = org.apache.cordova.contacts/CDVContact.h; sourceTree = "<group>"; };
 		7E7966D41810823500FA85AD /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40.png"; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				65C4381A1A5D9FBC001E0862 /* Media.xcassets */,
 				65B032741A56AE06006BE5B6 /* www */,
 				65B301471A4DEE2200188A4E /* db */,
 				EB87FDF41871DAF40020F90C /* config.xml */,
@@ -1208,6 +1211,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 510;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = Y82XV493D3;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "simpledebt" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1255,6 +1263,7 @@
 			files = (
 				65B033D21A56AE07006BE5B6 /* itemReceber.js in Resources */,
 				65B033A91A56AE07006BE5B6 /* screen-xhdpi-portrait.png in Resources */,
+				65C4381B1A5D9FBC001E0862 /* Media.xcassets in Resources */,
 				65B301481A4DEE2200188A4E /* db in Resources */,
 				65B033891A56AE07006BE5B6 /* Contact.js in Resources */,
 				65B033841A56AE07006BE5B6 /* ContactField.js in Resources */,
@@ -1491,7 +1500,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1522,7 +1534,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "simpledebt/simpledebt-Prefix.pch";

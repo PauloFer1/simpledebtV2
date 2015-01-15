@@ -16,6 +16,8 @@ var view = {
     _addReceber: insertReceber,
     _addPagar: insertPagar,
     _contactList: contactList,
+    _historicList: historicList,
+    _historicItem: historicItem,
     
     initialize: function(model, controller){
 
@@ -27,6 +29,7 @@ var view = {
         document.addEventListener("home.receber.btn", this.gotoReceber, false);
         document.addEventListener("home.pagar.btn", this.gotoPagar, false);
         document.addEventListener("home.list.btn", this.gotoListAll, false);
+        document.addEventListener("historic.list.btn", this.gotoHistoricList, false);
         document.addEventListener("model.receber.ready", view.gotoReceberReady, false);
         document.addEventListener("model.pagar.ready", view.gotoPagarReady, false);
         document.addEventListener("model.list.ready", view.gotoListAllReady, false);
@@ -107,7 +110,28 @@ var view = {
         view.changePage(view._allItem.getHtml(model));
         view._allItem   .setEvents();
     },
-    //****************** @LIST *******************//
+    //****************** HistoricLIST *******************//
+    gotoHistoricList: function()
+    {
+        model.getAllDebts();
+    },
+    gotoHistoricListReady: function()
+    {
+        view._previousPage = view._actPage;
+        view._actPage = view._list;
+        view.changePage(view._list.getHtml(model));
+        view._list.setEvents();
+    },
+    gotoHistoricItem: function(){
+        model.prepareModelItemAll();
+    },       
+    gotoHistoricItemReady: function(){
+        view._previousPage = view._actPage;
+        view._actPage = view._allItem;
+        view.changePage(view._allItem.getHtml(model));
+        view._allItem   .setEvents();
+    },
+    //****************** @HistoricLIST *******************//
     //****************** RECEBER *******************//
     gotoReceber: function()
     {
