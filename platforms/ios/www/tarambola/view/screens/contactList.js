@@ -16,14 +16,6 @@ var contactList={
                             '</ul>'+
                             '<div id="wrapper">'+
                                 '<dl id="scroller">'+
-                                    '<dt id="A">A</dt><dd>Aaaaaa Aaaaaa</dd><dd>Aaaaaa Aaaaaa</dd><dd>Aaaaaa Aaaaaa</dd><dd>Aaaaaa Aaaaaa</dd><dd class="last">Aaaaaa Aaaaaa</dd>'+
-                                    '<dt id="B">B</dt><dd>Bbbbbb Bbbbbb</dd><dd>Bbbbbb Bbbbbb</dd><dd>Bbbbbb Bbbbbb</dd><dd class="last">Bbbbbb Bbbbbb</dd>'+
-                                    '<dt id="C">C</dt><dd>Cccccc Cccccc</dd><dd>Cccccc Cccccc</dd><dd>Cccccc Cccccc</dd><dd class="last">Cccccc Cccccc</dd>'+
-                                    '<dt id="D">D</dt><dd>Dddddd Dddddd</dd><dd>Dddddd Dddddd</dd><dd>Dddddd Dddddd</dd><dd>Dddddd Dddddd</dd><dd class="last">Dddddd Dddddd</dd>'+
-                                    '<dt id="E">E</dt><dd>Eeeeee Eeeeee</dd><dd>Eeeeee Eeeeee</dd><dd>Eeeeee Eeeeee</dd><dd class="last">Eeeeee Eeeeee</dd>'+
-                                    '<dt id="L">L</dt><dd>Llllll Llllll</dd><dd>Llllll Llllll</dd><dd>Llllll Llllll</dd>'+
-                                    '<dt id="O">O</dt><dd>Oooooo Oooooo</dd><dd>Oooooo Oooooo</dd><dd>Oooooo Oooooo</dd>'+
-                                    '<dt id="W">W</dt><dd>Wwwwww Wwwwww</dd><dd>Wwwwww Wwwwww</dd><dd>Wwwwww Wwwwww</dd><dd>Wwwwww Wwwwww</dd>'+
                                 '</dl>'+
                             '</div>'+
                     '</div>'+
@@ -217,7 +209,6 @@ var contactList={
                 obj+=']}';
         }
         numbers+=']}';
-        alert(numbers);
         obj+=numbers;
         obj+=']}';
         var json = JSON.parse(obj);

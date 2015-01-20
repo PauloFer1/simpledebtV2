@@ -150,6 +150,35 @@ var model ={
         model.isTransaction=0;
     },   
     ////**************************************************** @HOME ****************************************************//
+    ////**************************************************** HISTORICLIST ****************************************************//
+    getHistoricReceberByUser:function(name){
+        window.localStorage.setItem("name", name);
+        model.database.executeSql('SELECT * FROM ( SELECT DISTINCT id, nome, data, valor, descricao, liquidada, 1 AS tabela FROM receber WHERE nome="'+name+'" UNION SELECT DISTINCT id, nome, data, valor, descricao, liquidada, 0 AS tabela FROM pagar  WHERE nome="'+name+'") ORDER BY data', [], model.queryHistoricReceberSuccess, model.errorCB);
+        model.isTransaction=1;
+    },
+    queryHistoricReceberSuccess:function(results){
+        if(results)
+        {
+            var len = results.rows.length;
+            model.results = new Array();
+            for (var i=0; i<len; i++){
+                var obj = new Object();
+                obj.id = results.rows.item(i).id;
+                obj.valor = results.rows.item(i).valor;
+                obj.nome = results.rows.item(i).nome;
+                obj.data = results.rows.item(i).data;
+                obj.descricao = results.rows.item(i).descricao;
+                obj.liquidada = results.rows.item(i).liquidada;
+                // tabela = 1 para receber, 0 para pagar
+                obj.tabela = results.rows.item(i).tabela;
+                model.results.push(obj);
+            }
+            var event = new Event("model.historic.ready");
+            document.dispatchEvent(event);
+        }
+        model.isTransaction=0;
+    },
+    ////**************************************************** @HISTORICLIST ****************************************************//
     //**************************************************** RECEBER *************************************************//
     getListaQuery: function(){
         //model.database.executeSql('CREATE TABLE IF NOT EXISTS receber (id integer primary key, nome text, data text, valor double)');

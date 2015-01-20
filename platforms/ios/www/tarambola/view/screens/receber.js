@@ -6,6 +6,7 @@ receber = {
     _estado: 1,
     _count:0,
     _list:"",
+    _touchName:0,
     getHtml: function(model){
         var list = model.getListaReceber();
         receber._list=list;
@@ -59,9 +60,9 @@ receber = {
                       valor=0;
                   var data = new Date(list[i].data);
                   var dataStr = data.getDate()+'/'+(data.getMonth()+1)+'/'+data.getFullYear();
-                  html+='<li id="' + list[i].id + '" class="listLi liNext"> <div class="divBody1"><img class="headThImg" src="img/'+liqStr+'.png" title=""/></div>'+
-                            '<div id="nomeLista1" class="divBody2"><span id="nomeLista2" class="span26Blue">'+ list[i].nome +' </span></div>'+
-                            '<div class="divBody3"><span class="span26Blue">'+ dataStr +'</span></div>'+
+                  html+='<li id="' + list[i].id + '" name="'+list[i].nome+'" class="listLi liNext"> <div class="divBody1"><img class="headThImg" src="img/'+liqStr+'.png" title=""/></div>'+
+                            '<div id="nomeLista1" class="divBody2"><span class="nomeLista2 span26Blue" name="'+list[i].nome+'" >'+ list[i].nome +' </span></div>'+
+                            '<div class="divBody3"><span class="span26Blue dateList">'+ dataStr +'</span></div>'+
                             '<div class="divBody4"><span class="span26BlueRight">'+ valor.toFixed(2).replace('.', ',') + translate.currency +'</span></div>'+
                          '</li>';
                 }
@@ -81,7 +82,8 @@ receber = {
     setEvents: function()
     {
         setTimeout(function(){
-           //****** LAYOUT           
+           //****** LAYOUT    
+           receber._touchName=0;
             var h =  $(document).height() - ($('.liFst').offset().top + $('.liFst').height()  + $('#footer').height()) - ($('#footer').height()*0.01)*2 -47;
             $('#listagem').height(h);
             $('#totalReceber').html(receber._count.toString());
@@ -104,7 +106,11 @@ receber = {
             $('#allReceber').click(function(){receber.getAll();}); 
             
             $('li').on("click", receber.gotoItem);
-            $('li').on('touchstart', function(e){$(this).addClass('tapped');});
+           // $('li').on("click", receber.gotoHistoric);
+            $('.nomeLista2').on('touchstart', function(e){receber._touchName=1; $(this).addClass('tappedName');});
+            $('.nomeLista2').on('touchend', function(e){receber._touchName=0; $(this).removeClass('tappedName');});
+            $('.nomeLista2').on("click", function(e){e.preventDefault(); e.stopPropagation(); receber.gotoHistoric($(this).attr('name'));});
+            $('li').on('touchstart', function(e){if(receber._touchName==0) $(this).addClass('tapped');});
             $('li').on('touchend', function(e){$(this).removeClass('tapped');});
             //******* SCROLL LISTAGEM
             receber._scroll = new iScroll('listagem'); 
@@ -129,6 +135,13 @@ receber = {
         window.localStorage.setItem("item", $(this).attr('id'));
         
         var event = new Event("model.goto.item");
+        document.dispatchEvent(event);
+        receber.removeEvents();
+    },
+    gotoHistoric: function(name){
+        window.localStorage.setItem("name", name);
+        
+        var event = new Event("historic.list.btn");
         document.dispatchEvent(event);
         receber.removeEvents();
     },

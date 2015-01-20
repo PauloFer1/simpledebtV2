@@ -30,6 +30,7 @@ var view = {
         document.addEventListener("home.pagar.btn", this.gotoPagar, false);
         document.addEventListener("home.list.btn", this.gotoListAll, false);
         document.addEventListener("historic.list.btn", this.gotoHistoricList, false);
+        document.addEventListener("model.historic.ready", this.gotoHistoricListReady, false);
         document.addEventListener("model.receber.ready", view.gotoReceberReady, false);
         document.addEventListener("model.pagar.ready", view.gotoPagarReady, false);
         document.addEventListener("model.list.ready", view.gotoListAllReady, false);
@@ -62,7 +63,13 @@ var view = {
     },
     changePage: function(screen){
         // $('#content').html(screen);
-       this._slider.slidePageFrom($(screen), 'right');
+        if(window.localStorage.getItem("direction")=="left")
+        {
+            this._slider.slidePageFrom($(screen), 'left');
+            window.localStorage.setItem("direction", "right");
+        }
+        else
+            this._slider.slidePageFrom($(screen), 'right');
        if(screen!=view._home)
            view.showBackBtn();
        else
@@ -108,19 +115,19 @@ var view = {
         view._previousPage = view._actPage;
         view._actPage = view._allItem;
         view.changePage(view._allItem.getHtml(model));
-        view._allItem   .setEvents();
+        view._allItem.setEvents();
     },
     //****************** HistoricLIST *******************//
     gotoHistoricList: function()
     {
-        model.getAllDebts();
+        model.getHistoricReceberByUser(window.localStorage.getItem("name"));
     },
     gotoHistoricListReady: function()
     {
         view._previousPage = view._actPage;
-        view._actPage = view._list;
-        view.changePage(view._list.getHtml(model));
-        view._list.setEvents();
+        view._actPage = view._historicList;
+        view.changePage(view._historicList.getHtml(model));
+        view._historicList.setEvents();
     },
     gotoHistoricItem: function(){
         model.prepareModelItemAll();
@@ -261,6 +268,12 @@ var view = {
            view._slider.slidePageFrom($(view._pagar.getHtml(model)), "left");
            view._pagar.setEvents();     
            view._actPage = view._pagar;
+           view.showSearch();
+        }
+        else if(view._actPage==view._historicList)
+        {
+            window.localStorage.setItem("direction", "left");
+           view.gotoReceber();
            view.showSearch();
         }
         else if(view._actPage == view._contactList)

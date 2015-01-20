@@ -293,8 +293,8 @@ h1 {
 
 }
 .listLi.tapped {
-    background: -webkit-linear-gradient(top, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.1) 50%);
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.1) 50%);
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.1) 50%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.1) 50%);
 }
 #pesquisa
 {
@@ -367,13 +367,13 @@ h1 {
 
 .divHead1{
     float: left;
-    width: 18%;
+    width: 13%;
     text-align: center;
 }
 
 .divHead2{
     float: left;
-    width: 42%;
+    width: 46%;
     text-align: left;
 }
 
@@ -408,8 +408,10 @@ h1 {
 
 .divBody1{
     float: left;
-    width: 18%;
+    width: 9%;
     text-align: center;
+    padding-right: 3px;
+    padding-top: 10px;
 }
 .divBody1List{
     float: left;
@@ -420,7 +422,7 @@ h1 {
 .divBody2{
     float: left;
     padding-top: 20px;
-    width: 42%;
+    width: 46%;
 }
 .divBody2List{
     float: left;
@@ -441,11 +443,19 @@ h1 {
     background-color: #535362;
 }
 .divBody4{
-    float: left;
+    float: right;
     padding-top: 20px;
     width: 20%;
 }
-
+.nomeLista2{
+    background-color: #DDDDDD;
+    border: 4px solid #DDDDDD;
+    border-radius: 8px;
+}
+.tappedName{
+    background-color: #BBBBBB;
+    border: 4px solid #BBBBBB;
+}
 .span26Blue{
     font-family:Helvetica, Arial, sans-serif;
     font-size: 26px;      

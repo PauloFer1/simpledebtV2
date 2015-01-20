@@ -15,15 +15,14 @@ var historicList = {
         var filtragem=translate.act_lang.por_liquidar;
         var html=' <div id="container" class="receberScreen">'+
                       '<div id="headerDown">'+
-                        '<img alt="" src="img/inoutTop.png" class="headerReceber"/>'+
-                        '<span class="span30Black2 margLeft20 floatLeft marginTop24">'+translate.act_lang.todas+'</span>'+
-                        '<span id="totalReceber" class="span26White margRight40 floatRight marginTop30">12</span><span id="categoriaTitle" class="span26White floatRight margRight5 marginTop30">'+ filtragem +':</span>'+
+                        '<span class="span30Black2 margLeft20 floatLeft marginTop24">'+lista[0].nome+'</span>'+
+                        '<span id="totalReceber" class="span26White margRight40 floatRight marginTop30"></span><span id="categoriaTitle" class="span26White floatRight margRight5 marginTop30">'+ translate.act_lang.historico +'</span>'+
                     '</div>'+
                       '<div class="listLi liFst">'+
                             '<span id="listArrow"></span>'+
                             '<div class="divHead1"><img class="headThImg" src="img/head.png" title=""/>'+
                             '</div>'+
-                            '<div class="divHead2">'+translate.act_lang.nome+'</div>'+
+                            '<div class="divHead2">'+translate.act_lang.descricao+'</div>'+
                             '<div class="divHead3">'+translate.act_lang.data+'</div>'+
                             '<div class="divHead4">'+translate.act_lang.valor+'</div>'+
                     '</div>'+
@@ -41,14 +40,14 @@ var historicList = {
                   list._count++;
                   var liq;
                   var liqStr="";
-                  if(lista[i].tabela=="receber")
+                  if(lista[i].tabela==1)
                       liqStr = "headIn";
                   else
                       liqStr = "headOut";
                   var data = new Date(lista[i].data);
                   var dataStr = data.getDate()+'/'+(data.getMonth()+1)+'/'+data.getFullYear();
                   html+='<li id="' + lista[i].id + '" tabela="'+ lista[i].tabela +'" class="listLi liNext"> <div class="divBody1"><img class="headThImg" src="img/'+liqStr+'.png" title=""/></div>'+
-                            '<div id="nomeLista1" class="divBody2"><span id="nomeLista2" class="span26Blue">'+ lista[i].nome +' </span></div>'+
+                            '<div id="nomeLista1" class="divBody2"><span id="nomeLista2" class="span26Blue">'+ lista[i].descricao +' </span></div>'+
                             '<div class="divBody3"><span class="span26Blue">'+ dataStr +'</span></div>'+
                             '<div class="divBody4"><span class="span26BlueRight">'+ lista[i].valor.toFixed(2).replace('.', ',') + translate.currency+'</span></div>'+
                          '</li>';
@@ -63,15 +62,14 @@ var historicList = {
            //****** LAYOUT           
             var h =  $(document).height() - ($('.liFst').offset().top + $('.liFst').height()) - $('.liFst').height()*0.6;
             $('#listagem').height(h);
-            $('#totalReceber').html(list._count.toString());
             //***** HANDLERS
             $('#pesquisaInput').keyup(function(){list.filtraLista();});
             $('#closePesquisa').click(function(){receber.hidePesquisa();}); 
             //$('#closePesquisa').on('tap', function(){receber.hidePesquisa();}); 
             
-            $('li').on("click", list.gotoItem);
+           /* $('li').on("click", list.gotoItem);
             $('li').on('touchstart', function(e){$(this).addClass('tapped');});
-            $('li').on('touchend', function(e){$(this).removeClass('tapped');});
+            $('li').on('touchend', function(e){$(this).removeClass('tapped');});*/
             //******* SCROLL LISTAGEM
             list._scroll = new iScroll('listagem'); 
         }, 300);
