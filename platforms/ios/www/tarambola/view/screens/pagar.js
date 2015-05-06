@@ -5,9 +5,14 @@ var pagar = {
     _isPesquisa:false,
     _estado: 1,
     _count:0,
+    _touchName:0,
+    _total:0,
     getHtml: function(model){
+        var minus = "";
         var list = model.getListaPagar();
+        var opacity = "alpha";
          pagar._isPesquisa=false;
+         pagar._total=0;
          var filtragem=translate.act_lang.por_liquidar;
          if(pagar._estado==0)
             {
@@ -21,19 +26,19 @@ var pagar = {
             {
                  filtragem=translate.act_lang.por_liquidar;
             }
-          var html=' <div id="container">'+
+          var html=' <div id="container" class="pagarScreen">'+
                       '<div id="headerDown">'+
                         '<img alt="" src="img/liquidarTop.png" class="headerReceber"/>'+
-                        '<span id="titlePagar" class="span30Black2 margLeft20 floatLeft marginTop24">'+translate.act_lang.apagar+'</span>'+
-                        '<span id="totalReceber" class="span26White margRight40 floatRight marginTop30">12</span><span id="categoriaTitle" class="span26White floatRight margRight5 marginTop30">'+ filtragem +':</span>'+
+                        '<span class="span30Black2 margLeft20 floatLeft marginTop24">'+translate.act_lang.apagar+'</span>'+
+                        '<span id="categoriaTitle" class="span26White floatRight margRight5 marginTop30">'+ translate.act_lang.total +':0.00€</span>'+
                     '</div>'+
                       '<div class="listLi liFst">'+
                             '<span id="listArrow"></span>'+
                             '<div class="divHead1"><img class="headThImg" src="img/head.png" title=""/>'+
                             '</div>'+
-                            '<div class="divHead2">'+translate.act_lang.nome+'</div>'+
-                            '<div class="divHead3">'+translate.act_lang.data+'</div>'+
-                            '<div class="divHead4">'+translate.act_lang.valor+'</div>'+
+                            '<div class="divHead2">'+ window.localStorage.getItem("name")+'</div>'+
+                     //       '<div class="divHead3">'+translate.act_lang.data+'</div>'+
+                     //       '<div class="divHead4">'+translate.act_lang.valor+'</div>'+
                     '</div>'+
                     '<div id="pesquisa">'+
                         '<input type="text" id="pesquisaInput" value=""/>'+
@@ -45,19 +50,41 @@ var pagar = {
                 pagar._count=0;
                 for(var i=0; i<list.length; i++)
                 {
+                     if(list[i].liquidada==0 && list[i].tabela==1)
+                     {
+                         opacity="";
+                        pagar._total+=list[i].valor;
+                    }
+                    else if(list[i].liquidada==0 && list[i].tabela==0)
+                    {
+                        opacity="alpha";
+                        pagar._total-=list[i].valor;
+                    }
                   pagar._count++;
                   var liq;
                   var liqStr="";
-                  if(list[i].liquidada==1)
-                      liqStr = "headYes";
+                   var disable="";
+                   var valor = list[i].valor;
+                  if(!valor)
+                      valor=0;
+                  if(list[i].tabela==0)
+                  {
+                      minus="-";
+                      liqStr ="headIn";
+                      disable="1";
+                  }
                   else
-                      liqStr = "headNo";
+                  {
+                      disable="";
+                      minus="";
+                      liqStr ="headOut";
+                  }
                   var data = new Date(list[i].data);
                   var dataStr = data.getDate()+'/'+(data.getMonth()+1)+'/'+data.getFullYear();
-                  html+='<li id="' + list[i].id + '" class="listLi liNext"> <div class="divBody1"><img class="headThImg" src="img/'+liqStr+'.png" title=""/></div>'+
-                            '<div id="nomeLista1" class="divBody2"><span id="nomeLista2" class="span26Blue">'+ list[i].nome +' </span></div>'+
-                            '<div class="divBody3"><span class="span26Blue">'+ dataStr +'</span></div>'+
-                            '<div class="divBody4"><span class="span26BlueRight">'+ list[i].valor.toFixed(2).replace('.', ',') +translate.currency+'</span></div>'+
+                  html+='<li id="' + list[i].id + '" name="'+list[i].nome+'" disable="'+disable+'" class="listLi liNext '+opacity+'"> <div class="divBody1"><img class="headThImg" src="img/'+liqStr+'.png" title=""/></div>'+
+                       //     '<div id="nomeLista1" class="divBody2"><span id="nomeLista2" class="span26Blue" name="'+list[i].nome+'">'+ list[i].nome +' </span></div>'+
+                            '<div class="per50"><span class="span26Blue descricaoLabel noOverflow">'+list[i].descricao+'</span><span class="span15Grey dateList left fullWidth">'+dataStr+'</span></div>'+
+                            '<div class="divBody4"><span class="span26BlueRight">'+minus+ list[i].valor.toFixed(2).replace('.', ',') +translate.currency+'</span></div>'+
                          '</li>';
                 }
                 html+='</ul"></div>'+
@@ -75,12 +102,12 @@ var pagar = {
     },
     setEvents: function()
     {
+        $('html, body').scrollTop(0);
         setTimeout(function(){
            //****** LAYOUT
-           $('#titlePagar').html('A pagar');
             var h =  $(document).height() - ($('.liFst').offset().top + $('.liFst').height()  + $('#footer').height()) - ($('#footer').height()*0.01)*2 -47;
             $('#listagem').height(h);
-            $('#totalReceber').html(pagar._count.toString());
+          //  $('#totalReceber').html(pagar._count.toString());
             $('#options').hide();
             var t = $(document).height() - $('#footer').height() - ($('#footer').height()*0.01)*4 -7;
             var styles = {top : t.toString()+"px"};
@@ -100,10 +127,16 @@ var pagar = {
             $('#allReceber').click(function(){pagar.getAll();}); 
 
             $('li').on("click", pagar.gotoItem);
-            $('li').on('touchstart', function(e){$(this).addClass('tapped');});
-            $('li').on('touchend', function(e){$(this).removeClass('tapped');});
+       //     $('.nomeLista2').on('touchstart', function(e){pagar._touchName=1; $(this).addClass('tappedName');});
+       //     $('.nomeLista2').on('touchend', function(e){pagar._touchName=0; $(this).removeClass('tappedName');});
+       //     $('.nomeLista2').on("click", function(e){e.preventDefault(); e.stopPropagation(); pagar.gotoHistoric($(this).attr('name'));});
+            $('li').on('touchstart', function(e){if($(this).attr('disable')!="1"){$(this).addClass('tapped');}});
+            $('li').on('touchend', function(e){if($(this).attr('disable')!="1"){$(this).removeClass('tapped');}});
             //******* SCROLL LISTAGEM
             pagar._scroll = new iScroll('listagem'); 
+            $('html, body').scrollTop(0);
+            pagar._estado = window.localStorage.getItem("estado");
+            pagar.setOptionsAlpha();
         }, 300);
     },
     removeEvents: function(){
@@ -122,15 +155,29 @@ var pagar = {
          pagar._scroll=null;
     },
     gotoItem: function(){
-        window.localStorage.setItem("item", $(this).attr('id'));
+        if($(this).attr('disable')!="1")
+        {
+            window.localStorage.setItem("item", $(this).attr('id'));
+
+            var event = new Event("model.pagar.goto.item");
+            document.dispatchEvent(event);
+            pagar.removeEvents();
+        }
+    },
+    gotoHistoric: function(name){
+        window.localStorage.setItem("name", name);
+        window.localStorage.setItem("actpage", "pagar");
         
-        var event = new Event("model.pagar.goto.item");
+        var event = new Event("historic.list.btn");
         document.dispatchEvent(event);
-        pagar.removeEvents();
+        receber.removeEvents();
     },
     triggerAddPagar: function(){
-        var event = new Event('pagar.add.btn');
+        //var event = new Event('pagar.add.btn');
+        var event = new Event('pagar.addName.btn');
+        window.localStorage.setItem("addDirect", 0);
         document.dispatchEvent(event);
+        pagar.removeEvents();
         return(0);
     },
      showOptions: function(){
@@ -158,22 +205,23 @@ var pagar = {
        if(pagar._estado==0)
        {
             $(".all").css({ opacity: 0.5 });
-            $('#categoriaTitle').html(translate.act_lang.todas);
+           $('#categoriaTitle').html(translate.act_lang.total+": "+pagar._total.toFixed(2).replace('.', ',')+translate.currency);
        }
        else if(pagar._estado==2)
        {
-           $('#categoriaTitle').html(translate.act_lang.liquidadas);
+           $('#categoriaTitle').html(translate.act_lang.total+": "+pagar._total.toFixed(2).replace('.', ',')+translate.currency);
             $(".liquidada").css({ opacity: 0.5 });
        }
        else if(pagar._estado==1)
        {
             $(".noLiquidada").css({ opacity: 0.5 });
-            $('#categoriaTitle').html(translate.act_lang.por_liquidar);
+            $('#categoriaTitle').html(translate.act_lang.total+": "+pagar._total.toFixed(2).replace('.', ',')+translate.currency);
        }
     },
     getLiquidadas: function(){
          if(pagar._estado!=2)
          {
+             window.localStorage.setItem("estado", 2);
             model.getPagarLiquidadas();
             pagar._estado=2;
          }
@@ -181,6 +229,7 @@ var pagar = {
     getNoLiquidadas: function(){
         if(pagar._estado!=1)
         {
+            window.localStorage.setItem("estado", 1);
             model.getPagarNaoLiquidadas();
             pagar._estado=1;
         }
@@ -188,6 +237,7 @@ var pagar = {
     getAll: function(){
         if(pagar._estado!=0)
         {
+            window.localStorage.setItem("estado", 0);
             model.getListaPagarQuery();
             pagar._estado=0;
         }

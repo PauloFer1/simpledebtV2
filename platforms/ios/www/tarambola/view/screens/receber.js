@@ -7,10 +7,14 @@ receber = {
     _count:0,
     _list:"",
     _touchName:0,
+    _total:0,
     getHtml: function(model){
+        var minus = "";
         var list = model.getListaReceber();
+        var opacity = "alpha";
         receber._list=list;
         receber._isPesquisa=false;
+        receber._total=0;
         var filtragem=translate.act_lang.liquidadas;
         if(receber._estado==0)
             {
@@ -28,15 +32,15 @@ receber = {
                       '<div id="headerDown">'+
                         '<img alt="" src="img/receberTop.png" class="headerReceber"/>'+
                         '<span class="span30Black2 margLeft20 floatLeft marginTop24">'+translate.act_lang.areceber+'</span>'+
-                        '<span id="totalReceber" class="span26White margRight40 floatRight marginTop30">12</span><span id="categoriaTitle" class="span26White floatRight margRight5 marginTop30">'+ filtragem +':</span>'+
+                        '<span id="categoriaTitle" class="span26White floatRight margRight5 marginTop30">'+ translate.act_lang.total +':0.00€</span>'+
                     '</div>'+
                       '<div class="listLi liFst">'+
                             '<span id="listArrow"></span>'+
                             '<div class="divHead1"><img class="headThImg" src="img/head.png" title=""/>'+
                             '</div>'+
-                            '<div class="divHead2">'+translate.act_lang.nome+'</div>'+
-                            '<div class="divHead3">'+translate.act_lang.data+'</div>'+
-                            '<div class="divHead4">'+translate.act_lang.valor+'</div>'+
+                            '<div class="divHead2">'+ window.localStorage.getItem("name") +'</div>'+
+                         //   '<div class="divHead3">'+translate.act_lang.data+'</div>'+
+                 //          '<div class="divHead4 right" id="totalDebtReceber">Total:0€</div>'+
                     '</div>'+
                     '<div id="pesquisa">'+
                         '<input type="text" id="pesquisaInput" value=""/>'+
@@ -48,22 +52,41 @@ receber = {
                 receber._count=0;
                 for(var i=0; i<list.length; i++)
                 {
+                    if(list[i].liquidada==0 && list[i].tabela==1)
+                    {
+                        receber._total+=list[i].valor;
+                        opacity="";
+                    }
+                    else if(list[i].liquidada==0 && list[i].tabela==0)
+                    {
+                        receber._total-=list[i].valor;
+                        opacity="alpha";
+                    }
                   receber._count++;
                   var liq;
                   var liqStr="";
-                  if(list[i].liquidada==1)
-                      liqStr = "headYes";
-                  else
-                      liqStr = "headNo";
+                  var disable="";
                   var valor = list[i].valor;
                   if(!valor)
                       valor=0;
+                  if(list[i].tabela==0)
+                  {
+                      minus="-";
+                      liqStr ="headOut";
+                      disable="1";
+                  }
+                  else
+                  {
+                      disable="";
+                      minus="";
+                      liqStr ="headIn";
+                  }
                   var data = new Date(list[i].data);
                   var dataStr = data.getDate()+'/'+(data.getMonth()+1)+'/'+data.getFullYear();
-                  html+='<li id="' + list[i].id + '" name="'+list[i].nome+'" class="listLi liNext"> <div class="divBody1"><img class="headThImg" src="img/'+liqStr+'.png" title=""/></div>'+
-                            '<div id="nomeLista1" class="divBody2"><span class="nomeLista2 span26Blue" name="'+list[i].nome+'" >'+ list[i].nome +' </span></div>'+
-                            '<div class="divBody3"><span class="span26Blue dateList">'+ dataStr +'</span></div>'+
-                            '<div class="divBody4"><span class="span26BlueRight">'+ valor.toFixed(2).replace('.', ',') + translate.currency +'</span></div>'+
+                  html+='<li id="' + list[i].id + '" name="'+list[i].nome+'" disable="'+disable+'" class="listLi liNext '+opacity+'"> <div class="divBody1"><img class="headThImg" src="img/'+liqStr+'.png" title=""/></div>'+
+                            //'<div id="nomeLista1" class="divBody2"><span class="nomeLista2 span26Blue" name="'+list[i].nome+'" >'+ list[i].nome +' </span></div>'+
+                            '<div class="per50"><span class="span26Blue descricaoLabel noOverflow">'+list[i].descricao+'</span><span class="span15Grey dateList left fullWidth">'+dataStr+'</span></div>'+
+                            '<div class="divBody4"><span class="span26BlueRight">'+minus+ valor.toFixed(2).replace('.', ',') + translate.currency +'</span></div>'+
                          '</li>';
                 }
                 html+='</ul"></div>'+
@@ -81,12 +104,14 @@ receber = {
     },
     setEvents: function()
     {
+        $('html, body').scrollTop(0);
         setTimeout(function(){
            //****** LAYOUT    
            receber._touchName=0;
+         //  $('#totalDebtReceber').html(translate.act_lang.total+": "+receber._total.toFixed(2).replace('.', ',')+translate.currency);
             var h =  $(document).height() - ($('.liFst').offset().top + $('.liFst').height()  + $('#footer').height()) - ($('#footer').height()*0.01)*2 -47;
             $('#listagem').height(h);
-            $('#totalReceber').html(receber._count.toString());
+      //      $('#totalReceber').html(receber._count.toString());
             $('#options').hide();
             var t = $(document).height() - $('#footer').height() - ($('#footer').height()*0.01)*4 -7;
             var styles = {top : t.toString()+"px"};
@@ -107,13 +132,16 @@ receber = {
             
             $('li').on("click", receber.gotoItem);
            // $('li').on("click", receber.gotoHistoric);
-            $('.nomeLista2').on('touchstart', function(e){receber._touchName=1; $(this).addClass('tappedName');});
+       /*     $('.nomeLista2').on('touchstart', function(e){receber._touchName=1; $(this).addClass('tappedName');});
             $('.nomeLista2').on('touchend', function(e){receber._touchName=0; $(this).removeClass('tappedName');});
-            $('.nomeLista2').on("click", function(e){e.preventDefault(); e.stopPropagation(); receber.gotoHistoric($(this).attr('name'));});
-            $('li').on('touchstart', function(e){if(receber._touchName==0) $(this).addClass('tapped');});
-            $('li').on('touchend', function(e){$(this).removeClass('tapped');});
+            $('.nomeLista2').on("click", function(e){e.preventDefault(); e.stopPropagation(); receber.gotoHistoric($(this).attr('name'));}); */
+            $('li').on('touchstart', function(e){if($(this).attr('disable')!="1"){if(receber._touchName==0) $(this).addClass('tapped');}});
+            $('li').on('touchend', function(e){if($(this).attr('disable')!="1"){$(this).removeClass('tapped');}});
             //******* SCROLL LISTAGEM
             receber._scroll = new iScroll('listagem'); 
+            $('html, body').scrollTop(0);
+            receber._estado = window.localStorage.getItem("estado");
+            receber.setOptionsAlpha();
         }, 300);
     },
     removeEvents: function(){
@@ -132,14 +160,18 @@ receber = {
          receber._scroll=null;
     },
     gotoItem: function(){
-        window.localStorage.setItem("item", $(this).attr('id'));
+        if($(this).attr('disable')!="1")
+        {
+            window.localStorage.setItem("item", $(this).attr('id'));
         
-        var event = new Event("model.goto.item");
-        document.dispatchEvent(event);
-        receber.removeEvents();
+            receber.removeEvents();
+            var event = new Event("model.goto.item");
+            document.dispatchEvent(event);
+        }
     },
     gotoHistoric: function(name){
         window.localStorage.setItem("name", name);
+        window.localStorage.setItem("actpage", "receber");
         
         var event = new Event("historic.list.btn");
         document.dispatchEvent(event);
@@ -147,7 +179,8 @@ receber = {
     },
     triggerAddReceber: function(){
         document.activeElement.blur();
-        var event = new Event('receber.add.btn');
+        window.localStorage.setItem("addDirect", 0);
+        var event = new Event('receber.addName.btn');
         document.dispatchEvent(event);
         receber.removeEvents();
         return(0);
@@ -178,37 +211,40 @@ receber = {
        if(receber._estado==0)
        {
             $(".all").css({ opacity: 0.5 });
-            $('#categoriaTitle').html(translate.act_lang.todas);
+            $('#categoriaTitle').html(translate.act_lang.total+": "+receber._total.toFixed(2).replace('.', ',')+translate.currency);
        }
        else if(receber._estado==2)
        {
-           $('#categoriaTitle').html(translate.act_lang.liquidadas);
+           $('#categoriaTitle').html(translate.act_lang.total+": "+receber._total.toFixed(2).replace('.', ',')+translate.currency);
             $(".liquidada").css({ opacity: 0.5 });
        }
        else if(receber._estado==1)
        {
             $(".noLiquidada").css({ opacity: 0.5 });
-            $('#categoriaTitle').html(translate.act_lang.por_liquidar);
+            $('#categoriaTitle').html(translate.act_lang.total+": "+receber._total.toFixed(2).replace('.', ',')+translate.currency);
        }
     },
     getLiquidadas: function(){
          if(receber._estado!=2)
          {
-            model.getReceberLiquidadas();
+            window.localStorage.setItem("estado", 2);
+            model.getReceberLiquidadasName();
             receber._estado=2;
          }
     },
     getNoLiquidadas: function(){
         if(receber._estado!=1)
         {
-            model.getReceberNaoLiquidadas();
+            window.localStorage.setItem("estado", 1);
+            model.getReceberNaoLiquidadasName();
             receber._estado=1;
         }
     },
     getAll: function(){
         if(receber._estado!=0)
         {
-            model.getListaQuery();
+            window.localStorage.setItem("estado", 0);
+            model.getNameReceberQuery();
             receber._estado=0;
         }
     },

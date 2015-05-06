@@ -41,7 +41,9 @@ var home ={
         return(html);
     },
     setEvents:function(){
+        $('html, body').scrollTop(0);
         home.countTotal=0;
+        window.localStorage.setItem("estado", 1);
         //***** EVENTS
         $('.aReceberIndex').click(function(){home.triggerReceber();});    
         //$('.aReceberIndex').on('tap', function(){home.triggerReceber();});    
@@ -96,16 +98,22 @@ var home ={
               valorReceber =0;
           
           
-          $('#valorReceberHome').html((valorReceber.toFixed(2)+translate.currency).replace('.', ','));
-          $('#totalReceberHome').html(totalReceber.toString());
-          $('#totalPagarHome').html(totalPagar.toString());
-          $('#valorPagarHome').html((valorPagar.toFixed(2)+translate.currency).replace('.', ','));
 
           var total = model.totalReceber.valor + model.totalPagar.valor;
           var percRec = (model.totalReceber.valor/total) *100;
           var percPag = (model.totalPagar.valor/total) *100;
           
-          $('#saldo1').html(((model.totalReceber.valor - model.totalPagar.valor).toFixed(2)).replace('.', ','));
+          
+          var saldo = model.totalReceber.valor - model.totalPagar.valor;
+          var left = (saldo%1)*100;
+ 
+          
+          $('#saldo1').html(Math.floor(saldo));
+          $('#saldo2').html(","+Math.ceil(left)+translate.currency);
+          $('#valorReceberHome').html((valorReceber.toFixed(2)+translate.currency).replace('.', ','));
+          $('#totalReceberHome').html(totalReceber.toString());
+          $('#totalPagarHome').html(totalPagar.toString());
+          $('#valorPagarHome').html((valorPagar.toFixed(2)+translate.currency).replace('.', ','));
 
           var canvas = document.getElementById('myCanvas');
           var val = percPag;

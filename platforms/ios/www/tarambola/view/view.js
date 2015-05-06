@@ -10,6 +10,8 @@ var view = {
     _list: list,
     _allItem: allItem,
     _receber: receber,
+    _recebergroup: recebergroup,
+    _pagargroup: pagargroup,
     _pagar: pagar,
     _itemReceber: itemReceber,
     _itemPagar: itemPagar,
@@ -24,26 +26,38 @@ var view = {
         this._model = model;
         this._controller = controller; 
         
+        model.checkTable();
+        
         //********* EVENTS ***********
         //document.addEventListener("model.ready", this.gotoHome, false);
-        document.addEventListener("home.receber.btn", this.gotoReceber, false);
-        document.addEventListener("home.pagar.btn", this.gotoPagar, false);
+        document.addEventListener("home.receber.btn", this.gotoReceberGroup, false);
+        document.addEventListener("home.pagar.btn", this.gotoPagarGroup, false);
         document.addEventListener("home.list.btn", this.gotoListAll, false);
         document.addEventListener("historic.list.btn", this.gotoHistoricList, false);
         document.addEventListener("model.historic.ready", this.gotoHistoricListReady, false);
         document.addEventListener("model.receber.ready", view.gotoReceberReady, false);
+        document.addEventListener("model.recebergroup.ready", view.gotoReceberReadyGroup, false);
+        document.addEventListener("model.pagargroup.ready", view.gotoPagarReadyGroup, false);
         document.addEventListener("model.pagar.ready", view.gotoPagarReady, false);
         document.addEventListener("model.list.ready", view.gotoListAllReady, false);
         document.addEventListener("model.goto.item", view.gotoReceberItem, false);
+        document.addEventListener("model.goto.name", view.gotoReceberName, false);
+        document.addEventListener("model.goto.pagarname", view.gotoPagarName, false);
         document.addEventListener("model.all.goto.item", view.gotoAllItem, false);
         document.addEventListener("model.pagar.goto.item", view.gotoPagarItem, false);
         document.addEventListener("model.receberitem.ready", view.gotoReceberItemReady, false);
+        document.addEventListener("model.recebername.ready", view.gotoReceberNameReady, false);
+        document.addEventListener("model.pagarname.ready", view.gotoPagarNameReady, false);
         document.addEventListener("model.pagaritem.ready", view.gotoPagarItemReady, false);
         document.addEventListener("model.allitem.ready", view.gotoAllItemReady, false);
         document.addEventListener("receber.add.btn", view.gotoAddReceberReady, false);
+        document.addEventListener("receber.addName.btn", view.gotoAddReceberNameReady, false);
+        document.addEventListener("pagar.addName.btn", view.gotoAddPagarNameReady, false);
         document.addEventListener("pagar.add.btn", view.gotoAddPagarReady, false);
         document.addEventListener("receber.contact.list", view.gotoContactListReady, false);
+        document.addEventListener("pagar.contact.list", view.gotoContactListReady, false);
         document.addEventListener("receber.contact.choose", view.gotoBackContact, false);
+        document.addEventListener("pagar.contact.choose", view.gotoBackContact, false);
         //$('.aBack').click(function(){view.goBack();});
         $('.aBack').on('tap', function(){view.goBack();});
         //$('#topBtn').click(function(){view.searchDelete(); return(false);});
@@ -81,6 +95,7 @@ var view = {
            view.hideSearch();
        else
            view.showSearch();
+     //  $('body').css({top: "0px"});
        
     },
     setContent: function(content)
@@ -99,6 +114,7 @@ var view = {
     //****************** LIST *******************//
     gotoListAll: function()
     {
+        window.localStorage.setItem("direction", "right");
         model.getAllDebts();
     },
     gotoListAllReady: function()
@@ -109,6 +125,7 @@ var view = {
         view._list.setEvents();
     },
     gotoAllItem: function(){
+        window.localStorage.setItem("direction", "right");
         model.prepareModelItemAll();
     },       
     gotoAllItemReady: function(){
@@ -120,6 +137,7 @@ var view = {
     //****************** HistoricLIST *******************//
     gotoHistoricList: function()
     {
+        window.localStorage.setItem("direction", "right");
         model.getHistoricReceberByUser(window.localStorage.getItem("name"));
     },
     gotoHistoricListReady: function()
@@ -130,6 +148,7 @@ var view = {
         view._historicList.setEvents();
     },
     gotoHistoricItem: function(){
+        window.localStorage.setItem("direction", "right");
         model.prepareModelItemAll();
     },       
     gotoHistoricItemReady: function(){
@@ -140,9 +159,25 @@ var view = {
     },
     //****************** @HistoricLIST *******************//
     //****************** RECEBER *******************//
-    gotoReceber: function()
+    gotoReceber: function(direction)
     {
+        window.localStorage.setItem("direction", direction);
         model.getReceberNaoLiquidadas();
+    },
+    gotoReceberGroup: function(dir)
+    {
+        var direction ="right";
+        if(dir=="left")
+            direction="left";
+        //model.getReceberNaoLiquidadasGroup();
+        window.localStorage.setItem("direction", direction);
+        var estado = window.localStorage.getItem("estado");
+        if(estado==1)
+            model.getReceberNaoLiquidadasGroup();
+        else if(estado==2)
+            model.getReceberLiquidadasGroup();
+        else if(estado==0)
+            model.getReceberAllGroup();
     },
     gotoReceberReady: function()
     {
@@ -151,8 +186,27 @@ var view = {
         view.changePage(receber.getHtml(model));
         receber.setEvents();
     },
+    gotoReceberReadyGroup: function()
+    {
+        view._previousPage = view._actPage;
+        view._actPage = view._recebergroup;
+        view.changePage(recebergroup.getHtml(model));
+        recebergroup.setEvents();
+    },
     gotoReceberItem: function(){
+        window.localStorage.setItem("direction", "right");
         model.prepareModelItemReceber();
+    },
+    gotoReceberName: function(){
+        window.localStorage.setItem("direction", "right");
+       // model.prepareModelNameReceber();
+       var estado = window.localStorage.getItem("estado");
+       if(estado==1)
+            model.getReceberNaoLiquidadasName();
+       else if(estado==2)
+           model.getReceberLiquidadasName();
+       else if(estado==0)
+           model.getNameReceberQuery();
     },
     gotoReceberItemReady: function(){
         view._previousPage = this._actPage;
@@ -160,9 +214,24 @@ var view = {
         view.changePage(view._itemReceber.getHtml(model));
         view._itemReceber.setEvents();
     },
+     gotoReceberNameReady: function(){
+        view._previousPage = this._actPage;
+        view._actPage = view._receber;
+        view.changePage(view._receber.getHtml(model));
+        view._receber.setEvents();
+    },
     gotoAddReceberReady: function(){
         view._previousPage = this._actPage;
         view._actPage = view._addReceber;
+        view._addReceber._hasName=false;
+        view.changePage(view._addReceber.getHtml(model));
+        view._addReceber.setEvents();
+        view._addReceber.cleanStorage();
+    },
+    gotoAddReceberNameReady: function(){
+        view._previousPage = this._actPage;
+        view._actPage = view._addReceber;
+        view._addReceber._hasName=true;
         view.changePage(view._addReceber.getHtml(model));
         view._addReceber.setEvents();
         view._addReceber.cleanStorage();
@@ -176,15 +245,44 @@ var view = {
     },
     gotoBackContact: function(){
       view._previousPage = this._actPage;
-      view._actPage = view._addReceber;
-      view.changePage(view._addReceber.getHtml(model));
-      view._addReceber.setStorage();
-      view._addReceber.setEvents();
+      if(window.localStorage.getItem("actpage")=="addreceber")
+        view._actPage = view._addReceber;
+      else if(window.localStorage.getItem("actpage")=="itemreceber")
+        view._actPage = view._itemReceber;
+      else if(window.localStorage.getItem("actpage")=="addpagar")
+          view._actPage = view._addPagar;
+      else if(window.localStorage.getItem("actpage")=="itempagar")
+          view._actPage = view._itemPagar;
+      view.changePage(view._actPage.getHtml(model));
+      view._actPage.setStorage();
+      view._actPage.setEvents();
     },
     //****************** @RECEBER *******************//
     //****************** PAGAR *******************//
+    gotoPagarReadyGroup: function()
+    {
+        view._previousPage = view._actPage;
+        view._actPage = view._pagargroup;
+        view.changePage(pagargroup.getHtml(model));
+        pagargroup.setEvents();
+    },
+     gotoPagarGroup: function(dir)
+    {
+        var direction ="right";
+        if(dir=="left")
+            direction="left";
+        //model.getReceberNaoLiquidadasGroup();
+        window.localStorage.setItem("direction", direction);
+        model.getPagarNaoLiquidadaGroup();
+    },
+    gotoPagarName: function(){
+        window.localStorage.setItem("direction", "right");
+       // model.prepareModelNameReceber();
+       model.getPagarNaoLiquidadasName();
+    },
     gotoPagar: function()
     {
+        window.localStorage.setItem("direction", "right");
         model.getPagarNaoLiquidadas();
     },
     gotoPagarReady: function()
@@ -194,8 +292,23 @@ var view = {
         view.changePage(pagar.getHtml(model));
         pagar.setEvents();
     },
+     gotoAddPagarNameReady: function(){
+        view._previousPage = this._actPage;
+        view._actPage = view._addPagar;
+        view._addPagar._hasName=true;
+        view.changePage(view._addPagar.getHtml(model));
+        view._addPagar.setEvents();
+        view._addPagar.cleanStorage();
+    },
     gotoPagarItem: function(){
+        window.localStorage.setItem("direction", "right");
         model.prepareModelItemPagar();
+    },
+     gotoPagarNameReady: function(){
+        view._previousPage = this._actPage;
+        view._actPage = view._pagar;
+        view.changePage(view._pagar.getHtml(model));
+        view._pagar.setEvents();
     },
     gotoPagarItemReady: function(){
         view._previousPage = this._actPage;
@@ -203,17 +316,37 @@ var view = {
         view.changePage(view._itemPagar.getHtml(model));
         view._itemPagar.setEvents();
     },
-    gotoAddPagarReady: function(){
+    gotoAddPagarReady: function(){        
         view._previousPage = this._actPage;
         view._actPage = view._addPagar;
+        view._addPagar._hasName=false;
         view.changePage(view._addPagar.getHtml(model));
         view._addPagar.setEvents();
+        view._addPagar.cleanStorage();
     },
     //****************** @PAGAR *******************//
     goBack: function()
     {   
         document.activeElement.blur();
+    //    view._actPage.removeEvents();
         if(view._actPage==view._receber)
+        {
+            view.gotoReceberGroup("left");
+         /*  view._slider.slidePageFrom($(view._recebergroup.getHtml(model)), "left");
+            view._recebergroup.setEvents();
+            view._actPage=view._recebergroup;*/
+         //   view.hideBackBtn();
+            
+        }
+        else if(view._actPage==view._recebergroup)
+        {
+            view._slider.slidePageFrom($(view._home.getHtml(model)), "left");
+            view._home.setEvents();
+            view._actPage=view._home;
+            view.hideBackBtn();
+            
+        }
+         else if(view._actPage==view._pagargroup)
         {
             view._slider.slidePageFrom($(view._home.getHtml(model)), "left");
             view._home.setEvents();
@@ -223,10 +356,11 @@ var view = {
         }
         else if(view._actPage==view._pagar)
         {
-           view._slider.slidePageFrom($(view._home.getHtml(model)), "left");
+        /*   view._slider.slidePageFrom($(view._home.getHtml(model)), "left");
            view._home.setEvents();     
            view._actPage = view._home;
-           view.hideBackBtn();
+           view.hideBackBtn();*/
+            view.gotoPagarGroup("left");
         }
         else if(view._actPage==view._list)
         {
@@ -251,17 +385,36 @@ var view = {
         }
         else if(view._actPage==view._addReceber)
         {
-           view._slider.slidePageFrom($(view._receber.getHtml(model)), "left");
-           view._receber.setEvents();     
-           view._actPage = view._receber;
+            if(window.localStorage.getItem("addDirect")==1)
+            {
+                view._slider.slidePageFrom($(view._recebergroup.getHtml(model)), "left");
+                view._recebergroup.setEvents();     
+                view._actPage = view._recebergroup;
+            }
+            else
+            {
+                view._slider.slidePageFrom($(view._receber.getHtml(model)), "left");
+                view._receber.setEvents();     
+                view._actPage = view._receber;
+            }
+          
            view.showSearch();
         }
         else if(view._actPage==view._addPagar)
         {
-           view._slider.slidePageFrom($(view._pagar.getHtml(model)), "left");
-           view._pagar.setEvents();     
-           view._actPage = view._pagar;
-           view.showSearch();
+           if(window.localStorage.getItem("addDirect")==1)
+           {
+                view._slider.slidePageFrom($(view._pagargroup.getHtml(model)), "left");
+                view._pagargroup.setEvents();     
+                view._actPage = view._pagargroup;
+                view.showSearch();
+            }   
+            else{
+                view._slider.slidePageFrom($(view._pagar.getHtml(model)), "left");
+                view._pagar.setEvents();     
+                view._actPage = view._pagar;
+                view.showSearch();
+            }
         }
          else if(view._actPage==view._itemPagar)
         {
@@ -273,15 +426,36 @@ var view = {
         else if(view._actPage==view._historicList)
         {
             window.localStorage.setItem("direction", "left");
-           view.gotoReceber();
+           if(window.localStorage.getItem("actpage")=="receber")
+                view.gotoReceber("right");
+            else if(window.localStorage.getItem("actpage")=="pagar")
+                view.gotoPagar();
            view.showSearch();
         }
         else if(view._actPage == view._contactList)
         {
-            view._slider.slidePageFrom($(view._addReceber.getHtml(model)), "left");
-            view._addReceber.setEvents();
-            view._actPage = view._addReceber;
-            view._addReceber.setStorage();
+            if(window.localStorage.getItem("actpage")=="addreceber")
+            {
+                view._slider.slidePageFrom($(view._addReceber.getHtml(model)), "left");
+                view._actPage = view._addReceber;
+            }
+            else if(window.localStorage.getItem("actpage")=="itemreceber")
+            {
+                view._slider.slidePageFrom($(view._itemReceber.getHtml(model)), "left");
+                view._actPage = view._itemReceber;
+            }
+            else if(window.localStorage.getItem("actpage")=="addpagar")
+            {
+                view._slider.slidePageFrom($(view._addPagar.getHtml(model)), "left");
+                view._actPage = view._addPagar;
+            }
+            else if(window.localStorage.getItem("actpage")=="itempagar")
+            {
+                view._slider.slidePageFrom($(view._itemPagar.getHtml(model)), "left");
+                view._actPage = view._itemPagar;
+            }
+            view._actPage.setEvents();
+            view._actPage.setStorage();
             view.showSearch();
         }
         return(0);

@@ -1,0 +1,393 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'cordova@3.5.0-0.2.0' ]
+2 info using npm@1.4.14
+3 info using node@v0.10.29
+4 verbose cache add [ 'cordova@3.5.0-0.2.0', null ]
+5 verbose cache add name=undefined spec="cordova@3.5.0-0.2.0" args=["cordova@3.5.0-0.2.0",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'cordova@3.5.0-0.2.0',
+6 verbose parsed url   path: 'cordova@3.5.0-0.2.0',
+6 verbose parsed url   href: 'cordova@3.5.0-0.2.0' }
+7 verbose cache add name="cordova" spec="3.5.0-0.2.0" args=["cordova","3.5.0-0.2.0"]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: '3.5.0-0.2.0',
+8 verbose parsed url   path: '3.5.0-0.2.0',
+8 verbose parsed url   href: '3.5.0-0.2.0' }
+9 verbose addNamed [ 'cordova', '3.5.0-0.2.0' ]
+10 verbose addNamed [ '3.5.0-0.2.0', '3.5.0-0.2.0' ]
+11 silly lockFile 3ebfc9ad-cordova-3-5-0-0-2-0 cordova@3.5.0-0.2.0
+12 verbose lock cordova@3.5.0-0.2.0 /Users/paulofernandes/.npm/3ebfc9ad-cordova-3-5-0-0-2-0.lock
+13 verbose url raw cordova
+14 verbose url resolving [ 'https://registry.npmjs.org/', './cordova' ]
+15 verbose url resolved https://registry.npmjs.org/cordova
+16 info trying registry request attempt 1 at 18:13:26
+17 verbose etag "F3A26G32GQ4BXMKECSNYC8RD9"
+18 http GET https://registry.npmjs.org/cordova
+19 http 304 https://registry.npmjs.org/cordova
+20 silly registry.get cb [ 304,
+20 silly registry.get   { date: 'Fri, 26 Dec 2014 18:13:26 GMT',
+20 silly registry.get     server: 'Apache',
+20 silly registry.get     via: '1.1 varnish',
+20 silly registry.get     'last-modified': 'Fri, 26 Dec 2014 18:13:26 GMT',
+20 silly registry.get     'cache-control': 'max-age=60',
+20 silly registry.get     etag: '"F3A26G32GQ4BXMKECSNYC8RD9"',
+20 silly registry.get     age: '18',
+20 silly registry.get     'x-served-by': 'cache-lcy1133-LCY',
+20 silly registry.get     'x-cache': 'HIT',
+20 silly registry.get     'x-cache-hits': '1',
+20 silly registry.get     'x-timer': 'S1419617606.754060,VS0,VE1',
+20 silly registry.get     vary: 'Accept',
+20 silly registry.get     'content-length': '0',
+20 silly registry.get     'keep-alive': 'timeout=10, max=50',
+20 silly registry.get     connection: 'Keep-Alive' } ]
+21 verbose etag cordova from cache
+22 silly lockFile 1790c52d--cordova-cordova-3-5-0-0-2-0-tgz https://registry.npmjs.org/cordova/-/cordova-3.5.0-0.2.0.tgz
+23 verbose lock https://registry.npmjs.org/cordova/-/cordova-3.5.0-0.2.0.tgz /Users/paulofernandes/.npm/1790c52d--cordova-cordova-3-5-0-0-2-0-tgz.lock
+24 verbose addRemoteTarball [ 'https://registry.npmjs.org/cordova/-/cordova-3.5.0-0.2.0.tgz',
+24 verbose addRemoteTarball   'dc0e4205e54072220ee4c07158276d70a0d9f2ec' ]
+25 info retry fetch attempt 1 at 18:13:26
+26 verbose fetch to= /Users/paulofernandes/tmp/npm-2496-fM5s17aB/registry.npmjs.org/cordova/-/cordova-3.5.0-0.2.0.tgz
+27 http GET https://registry.npmjs.org/cordova/-/cordova-3.5.0-0.2.0.tgz
+28 http 200 https://registry.npmjs.org/cordova/-/cordova-3.5.0-0.2.0.tgz
+29 silly lockFile 1790c52d--cordova-cordova-3-5-0-0-2-0-tgz https://registry.npmjs.org/cordova/-/cordova-3.5.0-0.2.0.tgz
+30 silly lockFile 1790c52d--cordova-cordova-3-5-0-0-2-0-tgz https://registry.npmjs.org/cordova/-/cordova-3.5.0-0.2.0.tgz
+31 silly lockFile 3ebfc9ad-cordova-3-5-0-0-2-0 cordova@3.5.0-0.2.0
+32 silly lockFile 3ebfc9ad-cordova-3-5-0-0-2-0 cordova@3.5.0-0.2.0
+33 silly resolved [ { name: 'cordova',
+33 silly resolved     version: '3.5.0-0.2.0',
+33 silly resolved     preferGlobal: 'true',
+33 silly resolved     description: 'Cordova command line interface tool',
+33 silly resolved     main: 'cordova',
+33 silly resolved     engines: { node: '>=0.9.9' },
+33 silly resolved     engineStrict: true,
+33 silly resolved     bin: { cordova: './bin/cordova' },
+33 silly resolved     scripts: { test: 'jasmine-node --color spec' },
+33 silly resolved     repository:
+33 silly resolved      { type: 'git',
+33 silly resolved        url: 'https://git-wip-us.apache.org/repos/asf/cordova-cli.git' },
+33 silly resolved     bugs:
+33 silly resolved      { url: 'https://issues.apache.org/jira/browse/CB',
+33 silly resolved        email: 'dev@cordova.apache.org' },
+33 silly resolved     keywords: [ 'cordova', 'client', 'cli' ],
+33 silly resolved     dependencies:
+33 silly resolved      { 'cordova-lib': '0.21.1',
+33 silly resolved        q: '~0.9',
+33 silly resolved        optimist: '0.6.0',
+33 silly resolved        underscore: '1.4.4' },
+33 silly resolved     devDependencies: { 'jasmine-node': '~1' },
+33 silly resolved     author: { name: 'Anis Kadri' },
+33 silly resolved     contributors:
+33 silly resolved      [ [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object] ],
+33 silly resolved     license: 'Apache version 2.0',
+33 silly resolved     _id: 'cordova@3.5.0-0.2.0',
+33 silly resolved     dist:
+33 silly resolved      { shasum: 'dc0e4205e54072220ee4c07158276d70a0d9f2ec',
+33 silly resolved        tarball: 'http://registry.npmjs.org/cordova/-/cordova-3.5.0-0.2.0.tgz' },
+33 silly resolved     _from: 'cordova@3.5.0-0.2.0',
+33 silly resolved     _npmVersion: '1.4.3',
+33 silly resolved     _npmUser: { name: 'stevegill', email: 'stevengill97@gmail.com' },
+33 silly resolved     maintainers:
+33 silly resolved      [ [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object],
+33 silly resolved        [Object] ],
+33 silly resolved     directories: {},
+33 silly resolved     _shasum: 'dc0e4205e54072220ee4c07158276d70a0d9f2ec',
+33 silly resolved     _resolved: 'https://registry.npmjs.org/cordova/-/cordova-3.5.0-0.2.0.tgz' } ]
+34 info install cordova@3.5.0-0.2.0 into /usr/local/lib
+35 info installOne cordova@3.5.0-0.2.0
+36 info /usr/local/lib/node_modules/cordova unbuild
+37 info preuninstall cordova@4.1.3-nightly.2014.10.21
+38 info uninstall cordova@4.1.3-nightly.2014.10.21
+39 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild cordova@4.1.3-nightly.2014.10.21
+40 verbose /usr/local/bin,[object Object] binRoot
+41 info postuninstall cordova@4.1.3-nightly.2014.10.21
+42 verbose tar unpack /Users/paulofernandes/.npm/cordova/3.5.0-0.2.0/package.tgz
+43 silly lockFile 9557e84b-r-local-lib-node-modules-cordova tar:///usr/local/lib/node_modules/cordova
+44 verbose lock tar:///usr/local/lib/node_modules/cordova /Users/paulofernandes/.npm/9557e84b-r-local-lib-node-modules-cordova.lock
+45 silly lockFile 34cd14fb--cordova-3-5-0-0-2-0-package-tgz tar:///Users/paulofernandes/.npm/cordova/3.5.0-0.2.0/package.tgz
+46 verbose lock tar:///Users/paulofernandes/.npm/cordova/3.5.0-0.2.0/package.tgz /Users/paulofernandes/.npm/34cd14fb--cordova-3-5-0-0-2-0-package-tgz.lock
+47 silly gunzTarPerm modes [ '755', '644' ]
+48 silly gunzTarPerm extractEntry package.json
+49 silly gunzTarPerm extractEntry .npmignore
+50 silly gunzTarPerm extractEntry README.md
+51 silly gunzTarPerm extractEntry LICENSE
+52 silly gunzTarPerm extractEntry cordova.js
+53 silly gunzTarPerm extractEntry CONTRIBUTING.md
+54 silly gunzTarPerm extractEntry RELEASENOTES.md
+55 silly gunzTarPerm extractEntry .reviewboardrc
+56 silly gunzTarPerm extractEntry bin/cordova
+57 silly gunzTarPerm extractEntry bin/cordova.cmd
+58 silly gunzTarPerm extractEntry src/cli.js
+59 silly gunzTarPerm extractEntry src/help.js
+60 silly gunzTarPerm extractEntry doc/bash.md
+61 silly gunzTarPerm extractEntry doc/help.txt
+62 silly gunzTarPerm extractEntry NOTICE
+63 silly gunzTarPerm extractEntry scripts/cordova.completion
+64 silly gunzTarPerm extractEntry VERSION
+65 silly lockFile 9557e84b-r-local-lib-node-modules-cordova tar:///usr/local/lib/node_modules/cordova
+66 silly lockFile 9557e84b-r-local-lib-node-modules-cordova tar:///usr/local/lib/node_modules/cordova
+67 silly lockFile 34cd14fb--cordova-3-5-0-0-2-0-package-tgz tar:///Users/paulofernandes/.npm/cordova/3.5.0-0.2.0/package.tgz
+68 silly lockFile 34cd14fb--cordova-3-5-0-0-2-0-package-tgz tar:///Users/paulofernandes/.npm/cordova/3.5.0-0.2.0/package.tgz
+69 info preinstall cordova@3.5.0-0.2.0
+70 verbose readDependencies using package.json deps
+71 verbose readDependencies using package.json deps
+72 verbose cache add [ 'cordova-lib@0.21.1', null ]
+73 verbose cache add name=undefined spec="cordova-lib@0.21.1" args=["cordova-lib@0.21.1",null]
+74 verbose parsed url { protocol: null,
+74 verbose parsed url   slashes: null,
+74 verbose parsed url   auth: null,
+74 verbose parsed url   host: null,
+74 verbose parsed url   port: null,
+74 verbose parsed url   hostname: null,
+74 verbose parsed url   hash: null,
+74 verbose parsed url   search: null,
+74 verbose parsed url   query: null,
+74 verbose parsed url   pathname: 'cordova-lib@0.21.1',
+74 verbose parsed url   path: 'cordova-lib@0.21.1',
+74 verbose parsed url   href: 'cordova-lib@0.21.1' }
+75 verbose cache add [ 'q@~0.9', null ]
+76 verbose cache add name=undefined spec="q@~0.9" args=["q@~0.9",null]
+77 verbose parsed url { protocol: null,
+77 verbose parsed url   slashes: null,
+77 verbose parsed url   auth: null,
+77 verbose parsed url   host: null,
+77 verbose parsed url   port: null,
+77 verbose parsed url   hostname: null,
+77 verbose parsed url   hash: null,
+77 verbose parsed url   search: null,
+77 verbose parsed url   query: null,
+77 verbose parsed url   pathname: 'q@~0.9',
+77 verbose parsed url   path: 'q@~0.9',
+77 verbose parsed url   href: 'q@~0.9' }
+78 verbose cache add name="cordova-lib" spec="0.21.1" args=["cordova-lib","0.21.1"]
+79 verbose parsed url { protocol: null,
+79 verbose parsed url   slashes: null,
+79 verbose parsed url   auth: null,
+79 verbose parsed url   host: null,
+79 verbose parsed url   port: null,
+79 verbose parsed url   hostname: null,
+79 verbose parsed url   hash: null,
+79 verbose parsed url   search: null,
+79 verbose parsed url   query: null,
+79 verbose parsed url   pathname: '0.21.1',
+79 verbose parsed url   path: '0.21.1',
+79 verbose parsed url   href: '0.21.1' }
+80 verbose addNamed [ 'cordova-lib', '0.21.1' ]
+81 verbose addNamed [ '0.21.1', '0.21.1' ]
+82 silly lockFile cabf7791-cordova-lib-0-21-1 cordova-lib@0.21.1
+83 verbose lock cordova-lib@0.21.1 /Users/paulofernandes/.npm/cabf7791-cordova-lib-0-21-1.lock
+84 verbose cache add [ 'optimist@0.6.0', null ]
+85 verbose cache add name=undefined spec="optimist@0.6.0" args=["optimist@0.6.0",null]
+86 verbose parsed url { protocol: null,
+86 verbose parsed url   slashes: null,
+86 verbose parsed url   auth: null,
+86 verbose parsed url   host: null,
+86 verbose parsed url   port: null,
+86 verbose parsed url   hostname: null,
+86 verbose parsed url   hash: null,
+86 verbose parsed url   search: null,
+86 verbose parsed url   query: null,
+86 verbose parsed url   pathname: 'optimist@0.6.0',
+86 verbose parsed url   path: 'optimist@0.6.0',
+86 verbose parsed url   href: 'optimist@0.6.0' }
+87 verbose cache add [ 'underscore@1.4.4', null ]
+88 verbose cache add name=undefined spec="underscore@1.4.4" args=["underscore@1.4.4",null]
+89 verbose parsed url { protocol: null,
+89 verbose parsed url   slashes: null,
+89 verbose parsed url   auth: null,
+89 verbose parsed url   host: null,
+89 verbose parsed url   port: null,
+89 verbose parsed url   hostname: null,
+89 verbose parsed url   hash: null,
+89 verbose parsed url   search: null,
+89 verbose parsed url   query: null,
+89 verbose parsed url   pathname: 'underscore@1.4.4',
+89 verbose parsed url   path: 'underscore@1.4.4',
+89 verbose parsed url   href: 'underscore@1.4.4' }
+90 verbose cache add name="q" spec="~0.9" args=["q","~0.9"]
+91 verbose parsed url { protocol: null,
+91 verbose parsed url   slashes: null,
+91 verbose parsed url   auth: null,
+91 verbose parsed url   host: null,
+91 verbose parsed url   port: null,
+91 verbose parsed url   hostname: null,
+91 verbose parsed url   hash: null,
+91 verbose parsed url   search: null,
+91 verbose parsed url   query: null,
+91 verbose parsed url   pathname: '~0.9',
+91 verbose parsed url   path: '~0.9',
+91 verbose parsed url   href: '~0.9' }
+92 verbose addNamed [ 'q', '~0.9' ]
+93 verbose addNamed [ null, '>=0.9.0-0 <0.10.0-0' ]
+94 silly lockFile 81c03ade-q-0-9 q@~0.9
+95 verbose lock q@~0.9 /Users/paulofernandes/.npm/81c03ade-q-0-9.lock
+96 verbose cache add name="optimist" spec="0.6.0" args=["optimist","0.6.0"]
+97 verbose parsed url { protocol: null,
+97 verbose parsed url   slashes: null,
+97 verbose parsed url   auth: null,
+97 verbose parsed url   host: null,
+97 verbose parsed url   port: null,
+97 verbose parsed url   hostname: null,
+97 verbose parsed url   hash: null,
+97 verbose parsed url   search: null,
+97 verbose parsed url   query: null,
+97 verbose parsed url   pathname: '0.6.0',
+97 verbose parsed url   path: '0.6.0',
+97 verbose parsed url   href: '0.6.0' }
+98 verbose addNamed [ 'optimist', '0.6.0' ]
+99 verbose addNamed [ '0.6.0', '0.6.0' ]
+100 silly lockFile 6403b4d6-optimist-0-6-0 optimist@0.6.0
+101 verbose lock optimist@0.6.0 /Users/paulofernandes/.npm/6403b4d6-optimist-0-6-0.lock
+102 verbose cache add name="underscore" spec="1.4.4" args=["underscore","1.4.4"]
+103 verbose parsed url { protocol: null,
+103 verbose parsed url   slashes: null,
+103 verbose parsed url   auth: null,
+103 verbose parsed url   host: null,
+103 verbose parsed url   port: null,
+103 verbose parsed url   hostname: null,
+103 verbose parsed url   hash: null,
+103 verbose parsed url   search: null,
+103 verbose parsed url   query: null,
+103 verbose parsed url   pathname: '1.4.4',
+103 verbose parsed url   path: '1.4.4',
+103 verbose parsed url   href: '1.4.4' }
+104 verbose addNamed [ 'underscore', '1.4.4' ]
+105 verbose addNamed [ '1.4.4', '1.4.4' ]
+106 silly lockFile c6b5e825-underscore-1-4-4 underscore@1.4.4
+107 verbose lock underscore@1.4.4 /Users/paulofernandes/.npm/c6b5e825-underscore-1-4-4.lock
+108 silly addNameRange { name: 'q', range: '>=0.9.0-0 <0.10.0-0', hasData: false }
+109 verbose url raw cordova-lib
+110 verbose url resolving [ 'https://registry.npmjs.org/', './cordova-lib' ]
+111 verbose url resolved https://registry.npmjs.org/cordova-lib
+112 info trying registry request attempt 1 at 18:13:28
+113 verbose etag "6CBMFG27ZNIIVD5D4GZFZQDAV"
+114 http GET https://registry.npmjs.org/cordova-lib
+115 verbose url raw optimist
+116 verbose url resolving [ 'https://registry.npmjs.org/', './optimist' ]
+117 verbose url resolved https://registry.npmjs.org/optimist
+118 info trying registry request attempt 1 at 18:13:28
+119 verbose etag "5ECIA1UXP98P5884IEFPZNPXK"
+120 http GET https://registry.npmjs.org/optimist
+121 verbose url raw q
+122 verbose url resolving [ 'https://registry.npmjs.org/', './q' ]
+123 verbose url resolved https://registry.npmjs.org/q
+124 info trying registry request attempt 1 at 18:13:28
+125 verbose etag "E5OUNCSN2SEMHLX8BRGR3VJGM"
+126 http GET https://registry.npmjs.org/q
+127 verbose url raw underscore
+128 verbose url resolving [ 'https://registry.npmjs.org/', './underscore' ]
+129 verbose url resolved https://registry.npmjs.org/underscore
+130 info trying registry request attempt 1 at 18:13:28
+131 verbose etag "71LQKKKGYLRR63UNB86N9ILLN"
+132 http GET https://registry.npmjs.org/underscore
+133 http 304 https://registry.npmjs.org/cordova-lib
+134 silly registry.get cb [ 304,
+134 silly registry.get   { date: 'Fri, 26 Dec 2014 18:13:28 GMT',
+134 silly registry.get     server: 'Apache',
+134 silly registry.get     via: '1.1 varnish',
+134 silly registry.get     'last-modified': 'Fri, 26 Dec 2014 18:13:28 GMT',
+134 silly registry.get     'cache-control': 'max-age=60',
+134 silly registry.get     etag: '"6CBMFG27ZNIIVD5D4GZFZQDAV"',
+134 silly registry.get     age: '27',
+134 silly registry.get     'x-served-by': 'cache-lcy1125-LCY',
+134 silly registry.get     'x-cache': 'HIT',
+134 silly registry.get     'x-cache-hits': '1',
+134 silly registry.get     'x-timer': 'S1419617608.928062,VS0,VE0',
+134 silly registry.get     vary: 'Accept',
+134 silly registry.get     'content-length': '0',
+134 silly registry.get     'keep-alive': 'timeout=10, max=50',
+134 silly registry.get     connection: 'Keep-Alive' } ]
+135 verbose etag cordova-lib from cache
+136 http 304 https://registry.npmjs.org/underscore
+137 silly registry.get cb [ 304,
+137 silly registry.get   { date: 'Fri, 26 Dec 2014 18:13:28 GMT',
+137 silly registry.get     server: 'Apache',
+137 silly registry.get     via: '1.1 varnish',
+137 silly registry.get     'last-modified': 'Fri, 26 Dec 2014 18:13:28 GMT',
+137 silly registry.get     'cache-control': 'max-age=60',
+137 silly registry.get     etag: '"71LQKKKGYLRR63UNB86N9ILLN"',
+137 silly registry.get     age: '51',
+137 silly registry.get     'x-served-by': 'cache-lcy1120-LCY',
+137 silly registry.get     'x-cache': 'HIT',
+137 silly registry.get     'x-cache-hits': '1',
+137 silly registry.get     'x-timer': 'S1419617608.940075,VS0,VE0',
+137 silly registry.get     vary: 'Accept',
+137 silly registry.get     'content-length': '0',
+137 silly registry.get     'keep-alive': 'timeout=10, max=50',
+137 silly registry.get     connection: 'Keep-Alive' } ]
+138 verbose etag underscore from cache
+139 silly lockFile cabf7791-cordova-lib-0-21-1 cordova-lib@0.21.1
+140 silly lockFile cabf7791-cordova-lib-0-21-1 cordova-lib@0.21.1
+141 verbose about to build /usr/local/lib/node_modules/cordova
+142 info /usr/local/lib/node_modules/cordova unbuild
+143 info preuninstall cordova@3.5.0-0.2.0
+144 info uninstall cordova@3.5.0-0.2.0
+145 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild cordova@3.5.0-0.2.0
+146 verbose /usr/local/bin,[object Object] binRoot
+147 info postuninstall cordova@3.5.0-0.2.0
+148 silly lockFile c6b5e825-underscore-1-4-4 underscore@1.4.4
+149 silly lockFile c6b5e825-underscore-1-4-4 underscore@1.4.4
+150 error Error: version not found: cordova-lib@0.21.1
+150 error     at /usr/local/lib/node_modules/npm/lib/cache/add-named.js:123:12
+150 error     at saved (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/get.js:141:7)
+150 error     at /usr/local/lib/node_modules/npm/node_modules/graceful-fs/polyfills.js:133:7
+150 error     at Object.oncomplete (fs.js:107:15)
+151 error If you need help, you may report this *entire* log,
+151 error including the npm and node versions, at:
+151 error     <http://github.com/npm/npm/issues>
+152 error System Darwin 14.0.0
+153 error command "node" "/usr/local/bin/npm" "install" "-g" "cordova@3.5.0-0.2.0"
+154 error cwd /Volumes/Macintosh HD/Users/paulofernandes/Documents/tara/PROJECTS/CODE/MOBILE/simpledebt
+155 error node -v v0.10.29
+156 error npm -v 1.4.14
+157 verbose exit [ 1, true ]

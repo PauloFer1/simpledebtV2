@@ -3,6 +3,7 @@ var app ={
         model:model,    
         
         initialize: function(){
+          //  app.defaultCurrency();
             navigator.globalization.getPreferredLanguage( app.initLang, app.errorLang);
         },
         initLang: function(lang)

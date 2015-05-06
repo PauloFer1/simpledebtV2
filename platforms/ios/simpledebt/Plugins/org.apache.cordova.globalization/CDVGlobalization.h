@@ -48,7 +48,7 @@ typedef NSUInteger CDVGlobalizationError;
  * then the errorCB callback is invoked.
  */
 - (void)getLocaleName:(CDVInvokedUrlCommand*)command;
-
+    
 - (void)getCurrencySymbol:(CDVInvokedUrlCommand*)command;
 
 /**

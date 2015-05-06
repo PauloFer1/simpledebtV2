@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -37,6 +36,7 @@
 		595B604A74A74AFEB3558C61 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137B0FCD57054DDFB3587FC8 /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
 		629B295ED7EA4481B60CB78C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E732215CDF543CE875F3020 /* AddressBook.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		65A40DEE1AF968600002C85A /* db in Resources */ = {isa = PBXBuildFile; fileRef = 65A40DED1AF968600002C85A /* db */; };
 		65B0333E1A56AE06006BE5B6 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65B032751A56AE06006BE5B6 /* config.xml */; };
 		65B0333F1A56AE06006BE5B6 /* cordova.js in Resources */ = {isa = PBXBuildFile; fileRef = 65B032761A56AE06006BE5B6 /* cordova.js */; };
 		65B033401A56AE06006BE5B6 /* cordova_plugins.js in Resources */ = {isa = PBXBuildFile; fileRef = 65B032771A56AE06006BE5B6 /* cordova_plugins.js */; };
@@ -190,7 +190,6 @@
 		65B033D41A56AE07006BE5B6 /* pagar.js in Resources */ = {isa = PBXBuildFile; fileRef = 65B0333B1A56AE06006BE5B6 /* pagar.js */; };
 		65B033D51A56AE07006BE5B6 /* receber.js in Resources */ = {isa = PBXBuildFile; fileRef = 65B0333C1A56AE06006BE5B6 /* receber.js */; };
 		65B033D61A56AE07006BE5B6 /* view.js in Resources */ = {isa = PBXBuildFile; fileRef = 65B0333D1A56AE06006BE5B6 /* view.js */; };
-		65B301481A4DEE2200188A4E /* db in Resources */ = {isa = PBXBuildFile; fileRef = 65B301471A4DEE2200188A4E /* db */; };
 		65C4381B1A5D9FBC001E0862 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C4381A1A5D9FBC001E0862 /* Media.xcassets */; };
 		65EF16601A56AFBF00864719 /* SQLitePlugin.js in Resources */ = {isa = PBXBuildFile; fileRef = 65EF165F1A56AFBF00864719 /* SQLitePlugin.js */; };
 		7E7966DE1810823500FA85AD /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D41810823500FA85AD /* icon-40.png */; };
@@ -208,6 +207,8 @@
 		C33D848D14DA41FE8B41DB92 /* CDVContacts.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C435549AAB4CCAB5940418 /* CDVContacts.m */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		E53E975A8BDC4130AEB141B6 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D557181B0473BB212867F /* CDVLogger.m */; };
+		1584BB02C4BA4235A02B918D /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = B68CA92C820641A8AFCC7666 /* IonicKeyboard.m */; };
+		72FE2281302A4C87B67B2818 /* UIWebViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EE3407268C4AA6A9963A81 /* UIWebViewExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,6 +264,7 @@
 		553408F6DC4548EE84B98E38 /* SQLitePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SQLitePlugin.m; path = com.brodysoft.sqlitePlugin/SQLitePlugin.m; sourceTree = "<group>"; };
 		5A688954F62C423AB8086AF7 /* CDVGlobalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVGlobalization.h; path = org.apache.cordova.globalization/CDVGlobalization.h; sourceTree = "<group>"; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		65A40DED1AF968600002C85A /* db */ = {isa = PBXFileReference; lastKnownFileType = file; name = db; path = ../../../../../../../../../../../../../Users/paulofernandes/Desktop/db; sourceTree = "<group>"; };
 		65B032751A56AE06006BE5B6 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
 		65B032761A56AE06006BE5B6 /* cordova.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cordova.js; sourceTree = "<group>"; };
 		65B032771A56AE06006BE5B6 /* cordova_plugins.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cordova_plugins.js; sourceTree = "<group>"; };
@@ -416,7 +418,6 @@
 		65B0333B1A56AE06006BE5B6 /* pagar.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = pagar.js; sourceTree = "<group>"; };
 		65B0333C1A56AE06006BE5B6 /* receber.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = receber.js; sourceTree = "<group>"; };
 		65B0333D1A56AE06006BE5B6 /* view.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = view.js; sourceTree = "<group>"; };
-		65B301471A4DEE2200188A4E /* db */ = {isa = PBXFileReference; lastKnownFileType = file; path = db; sourceTree = "<group>"; };
 		65C4381A1A5D9FBC001E0862 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		65EF165F1A56AFBF00864719 /* SQLitePlugin.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SQLitePlugin.js; sourceTree = "<group>"; };
 		78DB42FC0E33492696B70412 /* CDVContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVContact.h; path = org.apache.cordova.contacts/CDVContact.h; sourceTree = "<group>"; };
@@ -445,6 +446,10 @@
 		F4E71B4D0E36460D833F82B3 /* CDVLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVLogger.h; path = org.apache.cordova.console/CDVLogger.h; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = simpledebt/config.xml; sourceTree = "<group>"; };
 		FC2F177D5319410B83ADA2A8 /* CDVDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVDevice.m; path = org.apache.cordova.device/CDVDevice.m; sourceTree = "<group>"; };
+		B68CA92C820641A8AFCC7666 /* IonicKeyboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "IonicKeyboard.m"; path = "com.ionic.keyboard/IonicKeyboard.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		14EE3407268C4AA6A9963A81 /* UIWebViewExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIWebViewExtension.m"; path = "com.ionic.keyboard/UIWebViewExtension.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		085F3EA3DE844BD18900370D /* IonicKeyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "IonicKeyboard.h"; path = "com.ionic.keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		23E17EDD6ADD429482F4424A /* UIWebViewExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIWebViewExtension.h"; path = "com.ionic.keyboard/UIWebViewExtension.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -492,7 +497,7 @@
 			children = (
 				65C4381A1A5D9FBC001E0862 /* Media.xcassets */,
 				65B032741A56AE06006BE5B6 /* www */,
-				65B301471A4DEE2200188A4E /* db */,
+				65A40DED1AF968600002C85A /* db */,
 				EB87FDF41871DAF40020F90C /* config.xml */,
 				EB87FDF21871DA7A0020F90C /* merges */,
 				EB87FDF11871DA420020F90C /* Staging */,
@@ -568,6 +573,10 @@
 				5A688954F62C423AB8086AF7 /* CDVGlobalization.h */,
 				553408F6DC4548EE84B98E38 /* SQLitePlugin.m */,
 				A355AF8D893B4057B441F53C /* SQLitePlugin.h */,
+				B68CA92C820641A8AFCC7666 /* IonicKeyboard.m */,
+				14EE3407268C4AA6A9963A81 /* UIWebViewExtension.m */,
+				085F3EA3DE844BD18900370D /* IonicKeyboard.h */,
+				23E17EDD6ADD429482F4424A /* UIWebViewExtension.h */,
 			);
 			name = Plugins;
 			path = simpledebt/Plugins;
@@ -1264,7 +1273,6 @@
 				65B033D21A56AE07006BE5B6 /* itemReceber.js in Resources */,
 				65B033A91A56AE07006BE5B6 /* screen-xhdpi-portrait.png in Resources */,
 				65C4381B1A5D9FBC001E0862 /* Media.xcassets in Resources */,
-				65B301481A4DEE2200188A4E /* db in Resources */,
 				65B033891A56AE07006BE5B6 /* Contact.js in Resources */,
 				65B033841A56AE07006BE5B6 /* ContactField.js in Resources */,
 				65B033981A56AE07006BE5B6 /* icon-80.png in Resources */,
@@ -1279,6 +1287,7 @@
 				65B0338A1A56AE07006BE5B6 /* contacts.js in Resources */,
 				30B4F30119D5E07200D9F7D8 /* Default-736h.png in Resources */,
 				65B033671A56AE07006BE5B6 /* listHeader.png in Resources */,
+				65A40DEE1AF968600002C85A /* db in Resources */,
 				65B0334F1A56AE06006BE5B6 /* closePesquisa.png in Resources */,
 				65B033431A56AE06006BE5B6 /* override.css in Resources */,
 				65B033D01A56AE07006BE5B6 /* insertReceber.js in Resources */,
@@ -1482,6 +1491,8 @@
 				439061FF59BF4273ABA832CD /* CDVGlobalization.m in Sources */,
 				65B033BB1A56AE07006BE5B6 /* README.md in Sources */,
 				335BFEFA8E774C16878E3336 /* SQLitePlugin.m in Sources */,
+				1584BB02C4BA4235A02B918D /* IonicKeyboard.m in Sources */,
+				72FE2281302A4C87B67B2818 /* UIWebViewExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1504,6 +1515,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1526,6 +1538,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = simpledebt;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1538,6 +1551,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "simpledebt/simpledebt-Prefix.pch";
@@ -1558,6 +1572,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = simpledebt;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

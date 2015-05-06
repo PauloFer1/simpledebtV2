@@ -125,6 +125,13 @@ module.exports = [
         "clobbers": [
             "SQLitePlugin"
         ]
+    },
+    {
+        "file": "plugins/com.ionic.keyboard/www/keyboard.js",
+        "id": "com.ionic.keyboard.keyboard",
+        "clobbers": [
+            "cordova.plugins.Keyboard"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -135,7 +142,8 @@ module.exports.metadata =
     "org.apache.cordova.device": "0.2.14-dev",
     "org.apache.cordova.dialogs": "0.2.12-dev",
     "org.apache.cordova.globalization": "0.3.4-dev",
-    "com.brodysoft.sqlitePlugin": "1.0.3"
+    "com.brodysoft.sqlitePlugin": "1.0.3",
+    "com.ionic.keyboard": "1.0.4"
 }
 // BOTTOM OF METADATA
 });

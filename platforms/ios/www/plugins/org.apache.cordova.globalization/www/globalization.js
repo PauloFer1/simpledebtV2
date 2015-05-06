@@ -1,4 +1,4 @@
-cordova.define("org.apache.cordova.globalization.globalization", function(require, exports, module) { /*
+cordova.define("org.apache.cordova.globalization.globalization", function(require, exports, module) {/*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -72,7 +72,6 @@ getCurrencySymbol:function(successCB, failureCB) {
                argscheck.checkArgs('fF', 'Globalization.getCurrencySymbol', arguments);
                exec(successCB, failureCB, "Globalization","getCurrencySymbol", []);
 },
-
 
 /**
 * Returns a date formatted as a string according to the client's user preferences and
@@ -393,5 +392,4 @@ getCurrencyPattern:function(currencyCode, successCB, failureCB) {
 };
 
 module.exports = globalization;
-
 });

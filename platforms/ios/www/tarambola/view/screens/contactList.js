@@ -1,4 +1,5 @@
 var contactList={
+    _previousPage:"",
     getHtml:function(model){
         var html='';
         var html='<div id="container">'+

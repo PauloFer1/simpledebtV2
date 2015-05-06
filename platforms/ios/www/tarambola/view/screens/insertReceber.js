@@ -3,10 +3,18 @@ var insertReceber = {
     _data:"",
     _valor:"",
     _descricao:"",
+    _hasName:false,
     
     getHtml: function (model){
           var date = new Date();
           var dateStr = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
+          var strRead = "";
+          var nameRead="";
+          if(insertReceber._hasName)
+          {
+              strRead="readonly";
+              nameRead = window.localStorage.getItem("name");
+          }
           var html='<div id="container">'+
                   '<div id="headerDown">'+
                         '<img alt="" src="img/receberTop.png" class="headerReceber"/>'+
@@ -21,12 +29,14 @@ var insertReceber = {
                     '<ul id="dividaUl">'+
                         '<li class="dividaLi">'+
                             '<div class="dividaLabel"><span class="span26Black">'+translate.act_lang.nome+': </span></div>'+
-                            '<div class="dividaInput"><input id="receberNomeInput" class="nameInput" type="text" name="name" value=""/></div>'+
-                            '<button type="button" id="contactList" class="contactBtn" title="Contactos">contactos</button>'+
-                        '</li>'+
+                            '<div class="dividaInput"><input id="receberNomeInput" class="nameInput" '+ strRead +' type="text" name="name" value="'+ nameRead +'"/></div>';
+                            if(!insertReceber._hasName)
+                                html+='<button type="button" id="contactList" class="contactBtn" title="Contactos">contactos</button>';
+
+                        html+='</li>'+
                         '<li class="dividaLi">'+
                             '<div class="dividaLabel"><span class="span26Black">'+translate.act_lang.valor+' '+translate.currency+': </span></div>'+
-                            '<div class="dividaInput"><input id="receberValorInput" class="nameInput" type="number" name="valor" value="" /></div>'+
+                            '<div class="dividaInput"><input id="receberValorInput" class="nameInput" type="text" name="valor" value="" /></div>'+
                         '</li>'+
                         '<li class="dividaLi">'+
                             '<div class="dividaLabel"><span class="span26Black">'+translate.act_lang.descricao+': </span></div>'+
@@ -42,7 +52,7 @@ var insertReceber = {
     },
     setEvents: function(){
         //**** LAYOUT
-        $('body').css({top: "0px"});
+        $('html, body').scrollTop(0);
          var h =  $(document).height() - ($('.liFst').offset().top + $('.liFst').height()  + $('#footer2').height()) - ($('#footer2').height()*0.01)*2 -47;
          if($('#dividaUl').height()<h)
             $('#dividaUl').height(h);
@@ -85,11 +95,12 @@ var insertReceber = {
      removeEvents: function(){
         $('.aAdicionar').unbind('click');
         $('#contactList').unbind('change');
+        $('.contactBtn').unbind('click');
     },
     triggerSubmitReceber: function(evt){
         if($('#receberNomeInput').val()!="")
         {
-            var reg = new RegExp(/[0-9.,]/);
+            var reg = new RegExp(/^[0-9.,]+$/);
             if(reg.test($('#receberValorInput').val()))
             {
                 model.addReceber($('#receberNomeInput').val(), $('#receberValorInput').val(), $('#receberDescricaoInput').val());
@@ -111,6 +122,7 @@ var insertReceber = {
          window.localStorage.setItem("contact",$('#receberNomeInput').val());
          window.localStorage.setItem("value", $('#receberValorInput').val());
          window.localStorage.setItem("description", $('#receberDescricaoInput').val());
+         window.localStorage.setItem("actpage", "addreceber");
       
          var event = new Event("receber.contact.list");
          document.dispatchEvent(event);

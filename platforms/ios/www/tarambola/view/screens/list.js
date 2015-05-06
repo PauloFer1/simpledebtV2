@@ -48,9 +48,9 @@ list = {
                   var data = new Date(lista[i].data);
                   var dataStr = data.getDate()+'/'+(data.getMonth()+1)+'/'+data.getFullYear();
                   html+='<li id="' + lista[i].id + '" tabela="'+ lista[i].tabela +'" class="listLi liNext"> <div class="divBody1"><img class="headThImg" src="img/'+liqStr+'.png" title=""/></div>'+
-                            '<div id="nomeLista1" class="divBody2"><span id="nomeLista2" class="span26Blue">'+ lista[i].nome +' </span></div>'+
-                            '<div class="divBody3"><span class="span26Blue">'+ dataStr +'</span></div>'+
-                            '<div class="divBody4"><span class="span26BlueRight">'+ lista[i].valor.toFixed(2).replace('.', ',') + translate.currency+'</span></div>'+
+                            '<div id="nomeLista1" class="divBody2"><span id="nomeLista2" class="span26Blue font20">'+ lista[i].nome +' </span></div>'+
+                            '<div class="divBody3"><span class="span26Blue font20">'+ dataStr +'</span></div>'+
+                            '<div class="divBody4"><span class="span26BlueRight font20">'+ lista[i].valor.toFixed(2).replace('.', ',') + translate.currency+'</span></div>'+
                          '</li>';
                 }
                 html+='</ul"></div>'+
