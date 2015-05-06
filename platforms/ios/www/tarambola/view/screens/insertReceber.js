@@ -36,7 +36,7 @@ var insertReceber = {
                         html+='</li>'+
                         '<li class="dividaLi">'+
                             '<div class="dividaLabel"><span class="span26Black">'+translate.act_lang.valor+' '+translate.currency+': </span></div>'+
-                            '<div class="dividaInput"><input id="receberValorInput" class="nameInput" type="text" name="valor" value="" /></div>'+
+                            '<div class="dividaInput"><input id="receberValorInput" class="nameInput" type="number" pattern="\d (\.\d*)?" step="0.01" name="valor" value="" /></div>'+
                         '</li>'+
                         '<li class="dividaLi">'+
                             '<div class="dividaLabel"><span class="span26Black">'+translate.act_lang.descricao+': </span></div>'+
@@ -103,7 +103,8 @@ var insertReceber = {
             var reg = new RegExp(/^[0-9.,]+$/);
             if(reg.test($('#receberValorInput').val()))
             {
-                model.addReceber($('#receberNomeInput').val(), $('#receberValorInput').val(), $('#receberDescricaoInput').val());
+                var v = $('#receberValorInput').val().replace(',','.');
+                model.addReceber($('#receberNomeInput').val(), v, $('#receberDescricaoInput').val());
                 window.localStorage.setItem("nomeItem", $('#nomeReceber').val());
                 var event = new Event('home.receber.btn');
                 document.dispatchEvent(event);

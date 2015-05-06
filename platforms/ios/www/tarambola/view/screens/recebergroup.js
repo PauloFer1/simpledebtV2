@@ -47,6 +47,16 @@ recebergroup = {
                 recebergroup._count=0;
                 for(var i=0; i<list.length; i++)
                 {
+                    try{
+                        var valor = list[i].valor.replace(',','.');
+                    }
+                    catch(err){
+                        var valor = list[i].valor;
+                    }
+                    valor = parseFloat(valor);
+                    if(!valor)
+                      valor=0;
+                  
                   recebergroup._count++;
                   var liq;
                   var liqStr="head_green";
@@ -54,9 +64,7 @@ recebergroup = {
                       liqStr = "head_green";
                   else
                       liqStr = "head_green";
-                  var valor = list[i].valor;
-                  if(!valor)
-                      valor=0;
+                
                   var data = new Date(list[i].data);
                   var dataStr = data.getDate()+'/'+(data.getMonth()+1)+'/'+data.getFullYear();
                   html+='<li id="' + list[i].id + '" name="'+list[i].nome+'" class="listLi liNext"> <div class="divBody1"><img class="headThImg" src="img/'+liqStr+'.png" title=""/></div>'+

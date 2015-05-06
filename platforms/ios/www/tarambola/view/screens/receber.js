@@ -52,23 +52,32 @@ receber = {
                 receber._count=0;
                 for(var i=0; i<list.length; i++)
                 {
+                    
+                    try{
+                        var valor = list[i].valor.replace(',','.');
+                    }
+                    catch(err){
+                        var valor = list[i].valor;
+                    }
+                    valor = parseFloat(valor);
+                    if(!valor)
+                      valor=0;
+                  
                     if(list[i].liquidada==0 && list[i].tabela==1)
                     {
-                        receber._total+=list[i].valor;
+                        receber._total+=valor;
                         opacity="";
                     }
                     else if(list[i].liquidada==0 && list[i].tabela==0)
                     {
-                        receber._total-=list[i].valor;
+                        receber._total-=valor;
                         opacity="alpha";
                     }
                   receber._count++;
                   var liq;
                   var liqStr="";
                   var disable="";
-                  var valor = list[i].valor;
-                  if(!valor)
-                      valor=0;
+                  
                   if(list[i].tabela==0)
                   {
                       minus="-";
@@ -81,6 +90,7 @@ receber = {
                       minus="";
                       liqStr ="headIn";
                   }
+                 
                   var data = new Date(list[i].data);
                   var dataStr = data.getDate()+'/'+(data.getMonth()+1)+'/'+data.getFullYear();
                   html+='<li id="' + list[i].id + '" name="'+list[i].nome+'" disable="'+disable+'" class="listLi liNext '+opacity+'"> <div class="divBody1"><img class="headThImg" src="img/'+liqStr+'.png" title=""/></div>'+

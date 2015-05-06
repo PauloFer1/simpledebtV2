@@ -41,7 +41,7 @@ var itemReceber = {
                             html+='</li>'+
                             '<li class="dividaLi">'+
                                 '<div class="dividaLabel"><span class="span26Black">'+translate.act_lang.deve+' '+translate.currency+': </span></div>'+
-                                '<div class="dividaInput"><input id="receberValorInput" class="nameInput" type="text" '+read+' pattern="[0-9]+([\.|,][0-9]+)?" step="0.01" name="valor" value="'+ item.valor +'" /></div>'+
+                                '<div class="dividaInput"><input id="receberValorInput" class="nameInput"  '+read+' type="number" pattern="\d (\.\d*)?" step="0.01" name="valor" value="'+ item.valor +'" /></div>'+
                             '</li>'+
                             '<li class="dividaLi">'+
                                 '<div class="dividaLabel"><span class="span26Black">'+translate.act_lang.descricao+': </span></div>'+
@@ -51,7 +51,7 @@ var itemReceber = {
                              if(liq!=1)
                              {
                                 html+='<div class="dividaLabel"><span class="span26Black">'+translate.act_lang.abateu+' '+translate.currency+': </span></div>'+
-                                '<div class="dividaInput"><input id="receberAbaterInput" class="nameInput" '+read+' type="text" name="abater" value="" /></div>'+
+                                '<div class="dividaInput"><input id="receberAbaterInput" class="nameInput" '+read+' type="number" pattern="\d (\.\d*)?" name="abater" value="" /></div>'+
                                 '<button type="button" id="abaterBtn" class="abaterBtn" title="Abater">abater</button>';
                              }           
                             html+='</li>';
@@ -163,7 +163,8 @@ var itemReceber = {
                                                 var liq=0;
                                                 if(final==0)
                                                     liq=1;
-                                                model.updateReceberAbater(model.item.id, $('#receberAbaterInput').val(), final, liq);
+                                                var v = $('#receberAbaterInput').val().replace(',','.');
+                                                model.updateReceberAbater(model.item.id, v, final, liq);
                                                 //var event = new Event('home.receber.btn');
                                                 itemReceber.removeEvents();
                                             }, 300);

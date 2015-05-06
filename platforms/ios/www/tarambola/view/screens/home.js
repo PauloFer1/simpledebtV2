@@ -106,10 +106,13 @@ var home ={
           
           var saldo = model.totalReceber.valor - model.totalPagar.valor;
           var left = (saldo%1)*100;
+          
+          var leftStr;
  
           
           $('#saldo1').html(Math.floor(saldo));
           $('#saldo2').html(","+Math.ceil(left)+translate.currency);
+          
           $('#valorReceberHome').html((valorReceber.toFixed(2)+translate.currency).replace('.', ','));
           $('#totalReceberHome').html(totalReceber.toString());
           $('#totalPagarHome').html(totalPagar.toString());
